@@ -285,48 +285,49 @@ const CyberChecklist = {
     },
 
     restartChecklist() {
-        // Reset form
-        document.getElementById('checklist').reset();
-        
-        // Hide results
-        const result = document.getElementById('resultBox');
-        result.style.display = 'none';
-        result.innerHTML = '';
-        
-        // Reset page state
-        this.currentPage = 0;
+    // Reset form
+    document.getElementById('checklist').reset();
 
-        // Show all pages again
-        this.pages.forEach(id => {
-            const page = document.getElementById(id);
-            if (page) page.style.display = 'block';
-        });
+    // Hide results
+    const result = document.getElementById('resultBox');
+    result.style.display = 'none';
+    result.innerHTML = '';
 
-        // Show navigation buttons
-        document.querySelectorAll('.button-row').forEach(row => {
-            row.style.display = 'flex';
-        });
+    // Reset page state
+    this.currentPage = 0;
 
-        // Reset accordion states
-        document.querySelectorAll('.accordion-header').forEach(h => {
-            h.classList.remove('active');
-            h.setAttribute('aria-expanded', 'false');
-            const icon = h.querySelector('.accordion-icon');
-            if (icon) icon.textContent = '▼';
-        });
+    // Reset all pages: hide them and remove "active"
+    this.pages.forEach(id => {
+        const page = document.getElementById(id);
+        page.style.display = '';
+        page.classList.remove('active');
+    });
 
-        document.querySelectorAll('.accordion-content').forEach(c => {
-            c.classList.remove('active');
-            c.setAttribute('aria-hidden', 'true');
-            c.style.maxHeight = null;
-        });
+    // Show navigation buttons
+    document.querySelectorAll('.button-row').forEach(row => {
+        row.style.display = 'flex';
+    });
 
-        // Clear any error states
-        this.clearErrorStates();
+    // Reset accordion states
+    document.querySelectorAll('.accordion-header').forEach(h => {
+        h.classList.remove('active');
+        h.setAttribute('aria-expanded', 'false');
+        const icon = h.querySelector('.accordion-icon');
+        if (icon) icon.textContent = '▼';
+    });
 
-        // Show first page
-        this.showPage(this.currentPage);
-    }
+    document.querySelectorAll('.accordion-content').forEach(c => {
+        c.classList.remove('active');
+        c.setAttribute('aria-hidden', 'true');
+        c.style.maxHeight = null;
+    });
+
+    // Clear any error states
+    this.clearErrorStates();
+
+    // Show first page correctly
+    this.showPage(this.currentPage);
+}
 };
 
 // Create global alias for HTML onclick handlers
