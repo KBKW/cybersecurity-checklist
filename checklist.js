@@ -336,3 +336,4 @@ window.checklist = CyberChecklist;
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => CyberChecklist.init());
 
+
