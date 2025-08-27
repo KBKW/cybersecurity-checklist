@@ -5,16 +5,37 @@ const CyberChecklist = {
     init() {
         this.showPage(this.currentPage);
         this.setupAccordions();
-        
-        // Observe changes to active accordion contents
+
+        // Observe content changes in .accordion-content
         const observer = new ResizeObserver(() => this.adjustAccordionHeights());
         document.querySelectorAll('.accordion-content').forEach(content => observer.observe(content));
+
+        // Adjust height when <details> elements are toggled
+        document.querySelectorAll('details').forEach(detail => {
+            detail.addEventListener('toggle', () => {
+                const accordionContent = detail.closest('.accordion-content');
+                if (accordionContent && accordionContent.classList.contains('active')) {
+                    this.adjustAccordionHeight(accordionContent);
+                }
+            });
+        });
+    },
+
+    adjustAccordionHeights() {
+        document.querySelectorAll('.accordion-content.active').forEach(content => {
+            this.adjustAccordionHeight(content);
+        });
+    },
+
+    adjustAccordionHeight(content) {
+        content.style.maxHeight = 'none';
+        const fullHeight = content.scrollHeight;
+        content.style.maxHeight = `${fullHeight}px`;
     },
 
     showPage(pageIndex) {
-        // Clear any error states from previous page
         this.clearErrorStates();
-        
+
         this.pages.forEach(pageId => {
             const page = document.getElementById(pageId);
             if (page) page.classList.remove('active');
@@ -31,7 +52,7 @@ const CyberChecklist = {
 
             this.updateProgress(pageIndex);
             this.updateNavigationButtons();
-            this.setupAccordions(); // Re-bind accordions for new page
+            this.setupAccordions(); // rebind for new page
         }
     },
 
@@ -140,7 +161,6 @@ const CyberChecklist = {
             header.setAttribute('role', 'button');
             header.setAttribute('aria-expanded', 'false');
 
-            // Remove existing event listeners to prevent duplicates
             header.onclick = null;
             header.onkeydown = null;
 
@@ -162,7 +182,7 @@ const CyberChecklist = {
         header.setAttribute('aria-expanded', (!isExpanded).toString());
         content.setAttribute('aria-hidden', isExpanded ? 'true' : 'false');
 
-        // Close all other accordions on the current page
+        // Close others on current page
         const page = document.querySelector('.page.active');
         page.querySelectorAll('.accordion-header').forEach(h => {
             if (h !== header) {
@@ -181,7 +201,7 @@ const CyberChecklist = {
             }
         });
 
-        // Toggle the clicked accordion
+
         if (isExpanded) {
             content.classList.remove('active');
             content.style.maxHeight = null;
@@ -189,32 +209,37 @@ const CyberChecklist = {
             if (icon) icon.textContent = '▼';
         } else {
             content.classList.add('active');
-            content.style.maxHeight = content.scrollHeight + 'px';
+            this.adjustAccordionHeight(content);
             header.classList.add('active');
             if (icon) icon.textContent = '▲';
         }
     },
 
     adjustAccordionHeights() {
-        document.querySelectorAll('.accordion-content.active').forEach(content => {
-            content.style.maxHeight = content.scrollHeight + 'px';
-        });
-    },
+    document.querySelectorAll('.accordion-content.active').forEach(content => {
+        // Temporarily remove maxHeight to allow natural expansion
+        content.style.maxHeight = 'none';
+
+        // Force reflow and then set new height
+        const fullHeight = content.scrollHeight;
+        content.style.maxHeight = fullHeight + 'px';
+    });
+},
 
     calculateScore() {
         const form = document.getElementById('checklist');
         const formData = new FormData(form);
-        let safeCount  = 0;
-        let total = 0;
+        let safeCount = 0; // counts "good" answers
+        let total = 0; // number of scored questions
 
         for (let [name, value] of formData.entries()) {
             if (name.startsWith('q') && (value === 'yes' || value === 'no')) {
                 total++;
-                if (value === 'yes') safeCount ++;
+                if (value === 'yes') safeCount++;
             }
         }
 
-        return { safeCount , total };
+        return { safeCount, total };
     },
 
     showResults() {
@@ -222,8 +247,8 @@ const CyberChecklist = {
             return;
         }
 
-        const { safeCount , total } = this.calculateScore();
-        const safePercentage = total > 0 ? (safeCount  / total) * 100 : 0;
+        const { safeCount, total } = this.calculateScore();
+        const safePercentage = total > 0 ? (safeCount / total) * 100 : 0;
 
         // Hide all pages and navigation
         this.pages.forEach(id => document.getElementById(id).style.display = 'none');
@@ -271,7 +296,7 @@ const CyberChecklist = {
 
         resultBox.innerHTML = `
             <h3>${riskLevel}</h3>
-            <p>You scored ${safeCount } out of ${total} (${Math.round(safePercentage)}%)</p>
+            <p>You scored ${safeCount} out of ${total} (${Math.round(safePercentage)}%)</p>
             <p>${riskMessage}</p>
             ${recommendationsHtml}
             <button class="btn nextBtn" onclick="CyberChecklist.restartChecklist()">Start Over</button>
