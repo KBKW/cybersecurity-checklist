@@ -18,6 +18,56 @@
             min-height: 100vh;
             padding: 20px;
         }
+		
+		details {
+		  overflow: visible;
+		  margin-top: 0.5rem;
+		}
+		
+		.check-details {
+		  background-color: #f1f9ff;
+		  border: 1px solid #cce4f6;
+		  border-radius: 5px;
+		  padding: 1rem;
+		  margin-top: 1rem;
+		  font-size: 0.95rem;
+		  color: #333;
+		}
+
+		.check-details summary {
+		  font-weight: bold;
+		  color: #007bff;
+		  cursor: pointer;
+		  list-style: none;
+		  position: relative;
+		}
+		
+		.check-details summary:focus {
+		  outline: 3px solid #80bdff;
+		  outline-offset: 2px;
+		  background-color: #e8f4ff;
+		}
+		
+		.check-details summary:hover {
+		  background-color: #eef7ff;
+		}
+
+		.check-details summary::marker {
+		  display: none;
+		}
+		
+		.check-details summary::after {
+		  content: "▼";
+		  position: absolute;
+		  right: 0;
+		  font-size: 0.8rem;
+		  transform: rotate(0deg);
+		  transition: transform 0.3s ease;
+		}
+
+		.check-details[open] summary::after {
+		  transform: rotate(180deg);
+		}
 
         .container {
             max-width: 800px;
@@ -409,6 +459,14 @@
                 flex-direction: column;
                 gap: 10px;
             }
+			
+			.tooltip {
+			  display: inline-block;
+			  color: #007bff;
+			  cursor: help;
+			  font-size: 1em;
+			  margin-left: 6px;
+}
         }
     </style>
 </head>
@@ -417,9 +475,9 @@
         <div class="header">
             <h1>Household Cybersecurity Checklist</h1>
             <p>Built on industry best practices to help you protect your digital home</p>
-		<details style="margin-top: 20px; font-size: 0.95em;">
+			<details style="margin-top: 20px; font-size: 0.95em;">
   <summary>What is this checklist based on?</summary>
-  <p>This tool uses principles from recognised security and privacy frameworks — including <strong>ISO/IEC 27001</strong> and the <strong>NIST Privacy Framework</strong> — but presents them in everyday language to help households take simple, effective action.</p>
+  <p>This tool uses principles from recognised security and privacy frameworks — including <strong>ISO/IEC 27001</strong> and the <strong>NIST Privacy Framework</strong> etc — but presents them in everyday language to help households take simple, effective action.</p>
 </details>
         </div>
 <main>
@@ -441,61 +499,99 @@
 		<h2>🏡 The Smart Home</h2>
 	</div>
 
+<!-- Question 1 -->
+ 
 	<div class="accordion-item">
 		<div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
-			<div class="accordion-title">Have you changed the default username and password on your smart devices?</div>
+			<div class="accordion-title">Have you changed the default usernames and passwords on your smart devices? (e.g., Smart TV, Alexa/Siri, Smart lights, Doorbells etc)
+			<span class="tooltip" title="Aligned with NIST SP 800-213/NIST IR 8259 (IoT), ISO/IEC 27001 A.9. (User Access Management), NCSC Guidance.">🛈</span>
+			</div>
 			<div class="accordion-icon">▼</div>
 		</div>
 		<div class="accordion-content" aria-hidden="true">
 			<div class="accordion-body">
 			<fieldset>
-          <legend class="visually-hidden">Have you changed the default username and password on your smart devices?</legend>
+          <legend class="visually-hidden">Have you changed the default usernames and passwords on your smart devices? (e.g., Smart TV, Alexa/Siri, Smart lights, Doorbells etc)</legend>
 				<div class="radio-group">
 					<label class="radio-option">
 						<input type="radio" name="q1" value="yes">
 						<span>Yes</span>
 					</label>
 					<label class="radio-option">
-						<input type="radio" name="q1" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/secure-your-devices' target='_blank'>Change default credentials on your smart devices to prevent unauthorised access.</a>">
+						<input type="radio" name="q1" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/smart-devices-in-the-home' target='_blank'>Change default credentials on your smart devices to prevent unauthorised access.</a>">
 						<span>No</span>
+					</label>
+					<label class="radio-option">
+						  <input type="radio" name="q1" value="unknown">
+						  <span>I don't know</span>
 					</label>
 				</div>
 				<div class="why-section">
 					<div class="why-title">Why this matters</div>
-					<div class="why-content">Default credentials are easy targets for attackers. Changing them reduces the risk of brute-force attacks.</div>
+					<div class="why-content">Smart devices often come with default usernames and passwords that are the same for every device. Hackers know these and can easily break in if you don’t change them.
+												Changing the login details helps protect your devices from being accessed by strangers.</div>
 				</div>
+				
+				 <!-- Help for non-technical users -->
+        <details class="check-details" role="group" aria-labelledby="check-summary">
+          <summary id="check-summary">How to check</summary>
+          <p>1. Open the app or webpage that controls your smart device.<br>
+			2. Look in the settings or account/security section for login details.<br>
+			3. If you see “admin” or similar as the username, and no password or a simple one like “1234” – it’s likely still the default.<br>
+			4. Change the username (if possible) and set a strong, unique password.<br>
+			5. Save your changes and log in again to confirm they’ve been updated.</p>
+        </details>
+		
 				</fieldset>
 			</div>
 		</div>
 	</div>
 	
+<!-- Question 2 -->
+	 
 	<div class="accordion-item">
 		<div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
-			<div class="accordion-title">Can you control your smart devices from outside your home network?</div>
+			<div class="accordion-title">Do your smart devices automatically install updates to stay secure?</div>
 			<div class="accordion-icon">▼</div>
 		</div>
 		<div class="accordion-content" aria-hidden="true">
 			<div class="accordion-body">
 <fieldset>
-          <legend class="visually-hidden">Can you control your smart devices from outside your home network?</legend>
+          <legend class="visually-hidden">Do your smart devices automatically install updates to stay secure?</legend>
 				<div class="radio-group">
 					<label class="radio-option">
 						<input type="radio" name="q2" value="yes">
 						<span>Yes</span>
 					</label>
 					<label class="radio-option">
-						<input type="radio" name="q2" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/secure-your-devices' target='_blank'>Change default credentials on your smart devices to prevent unauthorised access.</a>">
+						<input type="radio" name="q2" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/smart-devices-in-the-home' target='_blank'>Update smart devices to prevent vulnerabilities</a>">
 						<span>No</span>
+					</label>
+					<label class="radio-option">
+						  <input type="radio" name="q2" value="unknown">
+						  <span>I don't know</span>
 					</label>
 				</div>
 				<div class="why-section">
 					<div class="why-title">Why this matters</div>
-					<div class="why-content">Remote access should be secured with strong authentication and disabled if not needed to avoid exposing control interfaces.</div>
+					<div class="why-content">Updates (more specifically, Firmware Updates) fix bugs and close security holes that hackers could exploit. Without them, your smart device may stay vulnerable to known attacks.</div>
 				</div>
+				
+ <!-- Help for non-technical users -->
+        <details class="check-details" role="group" aria-labelledby="check-summary">
+          <summary id="check-summary">How to check</summary>
+          <p>1. Open the app that controls your smart device.  <br>
+			2. Look under <strong>Settings</strong> or <strong>Device Info</strong> for options like "Firmware", "Software Update", or "Automatic Updates".<br>
+			3. Turn on auto-update if it’s available.<br>
+			</p>
+        </details>
+		
 				</fieldset>
 			</div>
 		</div>
 	</div>
+	
+<!-- Question 3 -->
 	
 	<div class="accordion-item">
 		<div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
