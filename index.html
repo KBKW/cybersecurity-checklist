@@ -606,16 +606,27 @@
 						<input type="radio" name="q3" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/secure-your-devices' target='_blank'>Change default credentials on your smart devices to prevent unauthorised access.</a>">
 						<span>No</span>
 					</label>
+					<label class="radio-option">
+						  <input type="radio" name="q3" value="unknown">
+						  <span>I don't know</span>
+					</label>
 				</div>
 				<div class="why-section">
 					<div class="why-title">Why this matters</div>
 					<div class="why-content">Smart devices often collect data. Reviewing settings helps you protect your privacy.</div>
 				</div>
+<!-- Help for non-technical users -->
+				<details class="check-details" role="group" aria-labelledby="check-summary">
+					<summary id="check-summary">How to check</summary>
+					<p>Open the smart device’s companion app, go to <strong>Settings &gt; Privacy</strong>, and review options for data collection, history, and sharing. Disable or restrict where possible.</p>
+					</details>
 				</fieldset>
 			</div>
 		</div>
 	</div>
 	
+<!-- Question 4 -->	
+
 <div class="accordion-item">
 		<div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
 			<div class="accordion-title">Do you know how many smart devices are connected to your home network?</div>
@@ -634,11 +645,20 @@
 						<input type="radio" name="q4" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/secure-your-devices' target='_blank'>Change default credentials on your smart devices to prevent unauthorised access.</a>">
 						<span>No</span>
 					</label>
+					<label class="radio-option">
+						  <input type="radio" name="q4" value="unknown">
+						  <span>I don't know</span>
+					</label>
 				</div>
 				<div class="why-section">
 					<div class="why-title">Why this matters</div>
-					<div class="why-content">Regularly auditing connected devices helps detect unauthorized access or shadow IoT devices.</div>
+					<div class="why-content">Unrecognised or forgotten devices on your network may be vulnerable or unauthorised. Keeping track helps maintain security on your IoT devices.</div>
 				</div>
+<!-- Help for non-technical users -->
+				<details class="check-details" role="group" aria-labelledby="check-summary">
+					<summary id="check-summary">How to check</summary>
+						<p>Log into your router’s web interface or companion app. Open the <strong>Connected devices</strong> or <strong>Device list</strong> section and count how many are connected. Confirm they belong to you.</p>
+					</details>
 				</fieldset>
 			</div>
 		</div>
@@ -656,147 +676,170 @@
 	<div class="page-header">
 		<h2>🔑 Password Hygiene</h2>
 	</div>
+	
+<!-- Question 5 -->
+
+	<div class="accordion-item">
+    <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
+      <div class="accordion-title">Do you use different passwords for important accounts (email, banking, shopping)?</div>
+      <div class="accordion-icon">▼</div>
+    </div>
+    <div class="accordion-content" aria-hidden="true">
+      <div class="accordion-body">
+        <fieldset>
+          <legend class="visually-hidden">Do you use different passwords for important accounts?</legend>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="q5" value="yes">
+              <span>Yes</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="q5" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online#section_2' target='_blank' rel='noopener'>Avoid re-using passwords; use strong and unique passwords for each account.</a>">
+              <span>No</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="q5" value="unknown">
+              <span>I don't know</span>
+            </label>
+          </div>
+
+          <div class="why-section">
+            <div class="why-title">Why this matters</div>
+            <div class="why-content">If one site is breached, re-used passwords can let attackers into your other accounts.</div>
+          </div>
+<!-- Help for non-technical users -->
+          <details class="check-details" role="group" aria-labelledby="check-summary">
+            <summary id="check-summary">How to check</summary>
+            <p>1) List your key accounts; note if any share the same password.<br>
+               2) If yes, change them to unique passwords (use a manager for convenience).</p>
+          </details>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  
+<!-- Question 6 -->
 
 	<div class="accordion-item">
 		<div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
-			<div class="accordion-title">Do you use the same password for all personal accounts?</div>
+			<div class="accordion-title">Do you use a password manager to store and generate passwords?</div>
 			<div class="accordion-icon">▼</div>
 		</div>
 		<div class="accordion-content" aria-hidden="true">
 			<div class="accordion-body">
 			<fieldset>
-          <legend class="visually-hidden">Do you use the same password for all personal accounts?</legend>
-				<div class="radio-group">
-					<label class="radio-option">
-						<input type="radio" name="q5" value="yes">
-						<span>Yes</span>
-					</label>
-					<label class="radio-option">
-						<input type="radio" name="q5" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/secure-your-devices' target='_blank'>Change default credentials on your smart devices to prevent unauthorised access.</a>">
-						<span>No</span>
-					</label>
-				</div>
-				<div class="why-section">
-					<div class="why-title">Why this matters</div>
-					<div class="why-content">Using the same password across accounts means one breach can compromise everything. Unique passwords reduce this risk.</div>
-				</div>
-				</fieldset>
-			</div>
-		</div>
-	</div>
-
-	<div class="accordion-item">
-		<div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
-			<div class="accordion-title">Do you use a password manager to store your passwords?</div>
-			<div class="accordion-icon">▼</div>
-		</div>
-		<div class="accordion-content" aria-hidden="true">
-			<div class="accordion-body">
-			<fieldset>
-          <legend class="visually-hidden">Do you use a password manager to store your passwords?</legend>
+          <legend class="visually-hidden">Do you use a password manager to store and generate passwords?</legend>
 				<div class="radio-group">
 					<label class="radio-option">
 						<input type="radio" name="q6" value="yes">
 						<span>Yes</span>
 					</label>
 					<label class="radio-option">
-						<input type="radio" name="q6" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/secure-your-devices' target='_blank'>Change default credentials on your smart devices to prevent unauthorised access.</a>">
+						<input type="radio" name="q6" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/passwords#section_1' target='_blank' rel='noopener'>Use a reputable password manager to create and store unique passwords securely.</a>">
 						<span>No</span>
 					</label>
+					<label class="radio-option">
+              <input type="radio" name="q6" value="unknown">
+              <span>I don't know</span>
+            </label>
 				</div>
 				<div class="why-section">
 					<div class="why-title">Why this matters</div>
-					<div class="why-content">Password managers make it easier to use strong, unique passwords without needing to remember them all.</div>
+					<div class="why-content">Managers reduce password re-use and help you use stronger, unique passwords without needing to remember them all.</div>
 				</div>
+<!-- Help for non-technical users -->
+			<details class="check-details" role="group" aria-labelledby="check-summary">
+            <summary id="check-summary">How to check</summary>
+            <p>1) If you store passwords in notes or reuse them, install a manager (e.g., built-in browser store or dedicated app).<br>
+               2) Move key accounts into the manager and enable autofill/alerts.</p>
+          </details>	
 				</fieldset>
 			</div>
 		</div>
 	</div>
 	
+<!-- Question 7 -->	
+
 	<div class="accordion-item">
 		<div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
-			<div class="accordion-title">Do you use two-factor authentication (2FA) on your important accounts?</div>
+			<div class="accordion-title">Do you use two-factor authentication (2FA) on your important accounts (email, banking, socials)??</div>
 			<div class="accordion-icon">▼</div>
 		</div>
 		<div class="accordion-content" aria-hidden="true">
 			<div class="accordion-body">
 			<fieldset>
-          <legend class="visually-hidden">Do you use two-factor authentication (2FA) on your important accounts?</legend>
+          <legend class="visually-hidden">Do you use two-factor authentication (2FA) on your important accounts (email, banking, socials)??</legend>
 				<div class="radio-group">
 					<label class="radio-option">
 						<input type="radio" name="q7" value="yes">
 						<span>Yes</span>
 					</label>
 					<label class="radio-option">
-						<input type="radio" name="q7" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/secure-your-devices' target='_blank'>Change default credentials on your smart devices to prevent unauthorised access.</a>">
+						<input type="radio" name="q7" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/passwords#section_4' target='_blank' rel='noopener'>Turn on 2FA to protect accounts even if a password is stolen.</a>">
 						<span>No</span>
 					</label>
+					<label class="radio-option">
+              <input type="radio" name="q7" value="unknown">
+              <span>I don't know</span>
+            </label>
 				</div>
 				<div class="why-section">
 					<div class="why-title">Why this matters</div>
 					<div class="why-content">2FA adds an extra layer of security, making it harder for attackers to access your accounts even if they get your password.</div>
 				</div>
+<!-- Help for non-technical users -->
+				<details class="check-details" role="group" aria-labelledby="check-summary">
+            <summary id="check-summary">How to check</summary>
+            <p>1) Open account <strong>Security</strong> settings (email/bank/social).<br>
+               2) Enable <strong>Two-Factor Authentication</strong> (prefer an authenticator app over SMS if available).<br>
+               3) Store backup codes safely.</p>
+          </details>
 				</fieldset>
 			</div>
 		</div>
 	</div>
+	
+<!-- Question 8 -->
 
 	<div class="accordion-item">
 		<div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
-			<div class="accordion-title">Do you regularly update or change your passwords?</div>
+			<div class="accordion-title">Do you check if your email(s) appear in known data breaches and change passwords if found?</div>
 			<div class="accordion-icon">▼</div>
 		</div>
 		<div class="accordion-content" aria-hidden="true">
 			<div class="accordion-body">
 			<fieldset>
-          <legend class="visually-hidden">Do you regularly update or change your passwords?</legend>
+          <legend class="visually-hidden">Do you check if your email(s) appear in known data breaches and change passwords if found?</legend>
 				<div class="radio-group">
 					<label class="radio-option">
 						<input type="radio" name="q8" value="yes">
 						<span>Yes</span>
 					</label>
 					<label class="radio-option">
-						<input type="radio" name="q8" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/secure-your-devices' target='_blank'>Change default credentials on your smart devices to prevent unauthorised access.</a>">
+						<input type="radio" name="q8" value="no" data-recommendation="<a href='https://haveibeenpwned.com/' target='_blank' rel='noopener'>Check if your email is in a breach and change affected passwords immediately.</a>">
 						<span>No</span>
 					</label>
+					<label class="radio-option">
+              <input type="radio" name="q8" value="unknown">
+              <span>I don't know</span>
+            </label>
 				</div>
 				<div class="why-section">
 					<div class="why-title">Why this matters</div>
-					<div class="why-content">Regularly changing passwords helps protect against long-term compromise if a password was exposed without your knowledge.</div>
+					<div class="why-content">If your email appears in a breach, attackers may try your passwords elsewhere (“credential stuffing”).</div>
 				</div>
+<!-- Help for non-technical users -->
+				<details class="check-details" role="group" aria-labelledby="check-summary">
+            <summary id="check-summary">How to check</summary>
+            <p>1) Visit haveibeenpwned.com and enter your email.<br>
+               2) If breached, change those passwords and enable 2FA.<br>
+               3) Turn on breach alerts (via manager or service).</p>
+          </details>
 				</fieldset>
 			</div>
 		</div>
 	</div>
-
-	<div class="accordion-item">
-		<div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
-			<div class="accordion-title">Are any of your passwords short, simple, or reused from old accounts?</div>
-			<div class="accordion-icon">▼</div>
-		</div>
-		<div class="accordion-content" aria-hidden="true">
-			<div class="accordion-body">
-			<fieldset>
-          <legend class="visually-hidden">Are any of your passwords short, simple, or reused from old accounts?</legend>
-				<div class="radio-group">
-					<label class="radio-option">
-						<input type="radio" name="q9" value="yes">
-						<span>Yes</span>
-					</label>
-					<label class="radio-option">
-						<input type="radio" name="q9" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/secure-your-devices' target='_blank'>Change default credentials on your smart devices to prevent unauthorised access.</a>">
-						<span>No</span>
-					</label>
-				</div>
-				<div class="why-section">
-					<div class="why-title">Why this matters</div>
-					<div class="why-content">Weak or reused passwords are easy to guess or crack. Always use complex, unique passwords for every account.</div>
-				</div>
-				</fieldset>
-			</div>
-		</div>
-	</div>
-
+	
 	<div class="button-row">
 		<button type="button" class="btn backBtn" onclick="CyberChecklist.prevPage()">Back</button>
 		<button type="button" class="btn nextBtn" onclick="CyberChecklist.nextPage()">Next</button>
@@ -810,65 +853,209 @@
 		<h2>🌐 Home Network</h2>
 	</div>
 
+<!-- Question 9 -->
+
 	<div class="accordion-item">
 		<div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
-			<div class="accordion-title">Have you changed the default admin password on your Wi-Fi router?</div>
+			<div class="accordion-title">Have you changed the default router admin password and your Wi-Fi network name (SSID)?</div>
 			<div class="accordion-icon">▼</div>
 		</div>
 		<div class="accordion-content" aria-hidden="true">
 			<div class="accordion-body">
 			<fieldset>
-          <legend class="visually-hidden">Have you changed the default admin password on your Wi-Fi router?</legend>
+          <legend class="visually-hidden">Have you changed the default router admin password and your Wi-Fi network name (SSID)?</legend>
+				<div class="radio-group">
+					<label class="radio-option">
+						<input type="radio" name="q9" value="yes">
+						<span>Yes</span>
+					</label>
+					<label class="radio-option">
+						<input type="radio" name="q9" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/secure-your-devices' target='_blank'>Change default credentials on your smart devices to prevent unauthorised access.</a>">
+						<span>No</span>
+					</label>
+					<label class="radio-option">
+              <input type="radio" name="q9" value="unknown">
+              <span>I don't know</span>
+            </label>
+				</div>
+				
+				<div class="why-section">
+					<div class="why-title">Why this matters</div>
+					<div class="why-content">Default router passwords are widely known and often targeted by attackers to take over your network.</div>
+				</div>
+<!-- Help for non-technical users -->
+				<details class="check-details" role="group" aria-labelledby="check-summary">
+            <summary id="check-summary">How to check</summary>
+            <p>1) Open your router app or browse to its address (e.g., 192.168.0.1) which is usually on the back of your router.<br>
+               2) Login and change admin password; then rename SSID and set a strong Wi-Fi password (WPA2/WPA3).</p>
+          </details>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+	
+<!-- Question 10 -->
+<div class="accordion-item">
+		<div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
+			<div class="accordion-title">Is your router firmware up to date (automatic updates enabled where available)?</div>
+			<div class="accordion-icon">▼</div>
+		</div>
+		<div class="accordion-content" aria-hidden="true">
+			<div class="accordion-body">
+			<fieldset>
+          <legend class="visually-hidden">Is your router firmware up to date (automatic updates enabled where available)?</legend>
 				<div class="radio-group">
 					<label class="radio-option">
 						<input type="radio" name="q10" value="yes">
 						<span>Yes</span>
 					</label>
 					<label class="radio-option">
-						<input type="radio" name="q10" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/secure-your-devices' target='_blank'>Change default credentials on your smart devices to prevent unauthorised access.</a>">
+						<input type="radio" name="q10" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/secure-your-devices' target='_blank'>Enable router auto-updates or install the latest firmware to fix known flaws.</a>">
 						<span>No</span>
 					</label>
+					<label class="radio-option">
+              <input type="radio" name="q10" value="unknown">
+              <span>I don't know</span>
+            </label>
 				</div>
 				<div class="why-section">
 					<div class="why-title">Why this matters</div>
-					<div class="why-content">Default router passwords are widely known and often targeted by attackers to take over your network.</div>
+					<div class="why-content">Updates fix (patch) known vulnerabilities to prevent attackers actively exploiting them .</div>
 				</div>
-				</fieldset>
-			</div>
-		</div>
-	</div>
-
-<div class="accordion-item">
-		<div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
-			<div class="accordion-title">Do you regularly check which devices are connected to your home network?</div>
-			<div class="accordion-icon">▼</div>
-		</div>
-		<div class="accordion-content" aria-hidden="true">
-			<div class="accordion-body">
-			<fieldset>
-          <legend class="visually-hidden">Do you regularly check which devices are connected to your home network?</legend>
-				<div class="radio-group">
-					<label class="radio-option">
-						<input type="radio" name="q11" value="yes">
-						<span>Yes</span>
-					</label>
-					<label class="radio-option">
-						<input type="radio" name="q11" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/secure-your-devices' target='_blank'>Change default credentials on your smart devices to prevent unauthorised access.</a>">
-						<span>No</span>
-					</label>
-				</div>
-				<div class="why-section">
-					<div class="why-title">Why this matters</div>
-					<div class="why-content">Rogue or unknown devices could indicate unauthorized access to your network.</div>
-				</div>
+<!-- Help for non-technical users -->
+			<details class="check-details" role="group" aria-labelledby="check-summary">
+            <summary id="check-summary">How to check</summary>
+            <p>1) Router app/web → <strong>Administration</strong>/<strong>Firmware</strong>.<br>
+               2) Turn on auto-updates or click <strong>Check for updates</strong> and apply.</p>
+          </details>	
 				</fieldset>
 			</div>
 		</div>
 	</div>
 	
-	<div class="button-row">
-		<button type="button" class="btn backBtn" onclick="CyberChecklist.prevPage()">Back</button>
-		<button type="button" class="btn nextBtn" onclick="CyberChecklist.nextPage()">Next</button>
+<!-- Question 11 -->  
+
+	<div class="accordion-item">
+    <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
+      <div class="accordion-title">Do you regularly review connected devices and remove ones you don’t recognise?</div>
+      <div class="accordion-icon">▼</div>
+    </div>
+    <div class="accordion-content" aria-hidden="true">
+      <div class="accordion-body">
+        <fieldset>
+          <legend class="visually-hidden">Do you regularly review connected devices and remove ones you don’t recognise?</legend>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="q11" value="yes">
+              <span>Yes</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="q11" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/home-devices-secure' target='_blank' rel='noopener'>Check the connected devices list regularly and remove unknown devices.</a>">
+              <span>No</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="q11" value="unknown">
+              <span>I don't know</span>
+            </label>
+          </div>
+
+          <div class="why-section">
+            <div class="why-title">Why this matters</div>
+            <div class="why-content">Unknown devices could be neighbours or attackers using your network, slowing it down and risking your data.</div>
+          </div>
+<!-- Help for non-technical users -->
+          <details class="check-details" role="group" aria-labelledby="check-summary">
+            <summary id="check-summary">How to check</summary>
+            <p>1) Router app/web → <strong>Connected Devices</strong>.<br>
+               2) Rename known devices; block or forget unknown ones; change Wi-Fi password if unsure.</p>
+          </details>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+	
+	
+<!-- Question 12 -->
+	<div class="accordion-item">
+		<div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
+			<div class="accordion-title">Do you use a separate Guest Wi-Fi for visitors and untrusted devices?</div>
+			<div class="accordion-icon">▼</div>
+		</div>
+		<div class="accordion-content" aria-hidden="true">
+			<div class="accordion-body">
+			<fieldset>
+          <legend class="visually-hidden">Do you use a separate Guest Wi-Fi for visitors and untrusted devices?</legend>
+				<div class="radio-group">
+					<label class="radio-option">
+						<input type="radio" name="q12" value="yes">
+						<span>Yes</span>
+					</label>
+					<label class="radio-option">
+						<input type="radio" name="q12" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/home-networking' target='_blank' rel='noopener'>Enable a Guest Wi-Fi to isolate visitors from your main devices.</a>">
+						<span>No</span>
+					</label>
+					<label class="radio-option">
+              <input type="radio" name="q12" value="unknown">
+              <span>I don't know</span>
+            </label>
+				</div>
+				
+				<div class="why-section">
+					<div class="why-title">Why this matters</div>
+					<div class="why-content">A guest network limits what visitors can access if their device is infected.</div>
+				</div>
+<!-- Help for non-technical users -->
+				<details class="check-details" role="group" aria-labelledby="check-summary">
+            <summary id="check-summary">How to check</summary>
+            <p>1) Router app/web → <strong>Wireless</strong> → <strong>Guest Network</strong>.<br>
+               2) Enable, set a different password, and hide LAN access if offered.</p>
+          </details>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+	
+<!-- Question 13 -->	
+	<div class="accordion-item">
+		<div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
+        <div class="accordion-title">Is WPS (Wi-Fi Protected Setup) disabled on your router?</div>
+        <div class="accordion-icon">▼</div>
+    </div>
+    <div class="accordion-content" aria-hidden="true">
+        <div class="accordion-body">
+            <fieldset>
+                <legend class="visually-hidden">Is WPS (Wi-Fi Protected Setup) disabled on your router?</legend>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="q13" value="yes">
+                        <span>Yes</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="q13" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/home-networking' target='_blank' rel='noopener'>Disable WPS to prevent easy PIN-based compromise of Wi-Fi.</a>">
+                        <span>No</span>
+                    </label>
+					<label class="radio-option">
+              <input type="radio" name="q13" value="unknown">
+              <span>I don't know</span>
+            </label>
+                </div>
+                <div class="why-section">
+                    <div class="why-title">Why this matters</div>
+                    <div class="why-content">WPS can be brute-forced; turning it off makes your Wi-Fi much harder to break into.</div>
+                </div>
+<!-- Help for non-technical users -->
+			<details class="check-details" role="group" aria-labelledby="check-summary">
+            <summary id="check-summary">How to check</summary>
+            <p>1) Router app/web → <strong>Wireless</strong>/<strong>Advanced</strong> → <strong>WPS</strong>.<br>
+               2) Set WPS to <strong>Off</strong> (or disable PIN).</p>	
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<div class="button-row">
+		<button type="button" class="btn backBtn" onclick="checklist.prevPage()">Back</button>
+		<button type="button" class="btn nextBtn" onclick="checklist.showResults()">Complete Assessment</button>
 	</div>
 </div>
 
@@ -878,67 +1065,148 @@
 	<div class="page-header">
 		<h2>🛡️ Privacy & Data Awareness</h2>
 	</div>
+	
+<!-- Question 14 --> 
 
 	<div class="accordion-item">
-		<div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
-			<div class="accordion-title">Do you regularly check app permissions and privacy settings on your devices?</div>
-			<div class="accordion-icon">▼</div>
-		</div>
-		<div class="accordion-content" aria-hidden="true">
-			<div class="accordion-body">
-			<fieldset>
-          <legend class="visually-hidden">Do you regularly check app permissions and privacy settings on your devices?</legend>
-				<div class="radio-group">
-					<label class="radio-option">
-						<input type="radio" name="q12" value="yes">
-						<span>Yes</span>
-					</label>
-					<label class="radio-option">
-						<input type="radio" name="q12" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/secure-your-devices' target='_blank'>Change default credentials on your smart devices to prevent unauthorised access.</a>">
-						<span>No</span>
-					</label>
-				</div>
-				<div class="why-section">
-					<div class="why-title">Why this matters</div>
-					<div class="why-content">Apps may collect data unnecessarily. Reviewing permissions limits exposure.</div>
-				</div>
-				</fieldset>
-			</div>
-		</div>
-	</div>
-	
-	<div class="accordion-item">
-		<div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
-        <div class="accordion-title">Do you understand what personal data your devices and apps collect?</div>
-        <div class="accordion-icon">▼</div>
+    <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
+      <div class="accordion-title">Do you regularly review app permissions (camera, microphone, contacts, location) on phones and tablets?</div>
+      <div class="accordion-icon">▼</div>
     </div>
     <div class="accordion-content" aria-hidden="true">
-        <div class="accordion-body">
-            <fieldset>
-                <legend class="visually-hidden">Do you understand what personal data your devices and apps collect?</legend>
-                <div class="radio-group">
-                    <label class="radio-option">
-                        <input type="radio" name="q13" value="yes">
-                        <span>Yes</span>
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="q13" value="no" data-recommendation="<a href='https://ico.org.uk/your-data-matters/' target='_blank'>Understand how your apps and devices collect and use personal data, and review their privacy policies.</a>">
-                        <span>No</span>
-                    </label>
-                </div>
-                <div class="why-section">
-                    <div class="why-title">Why this matters</div>
-                    <div class="why-content">Knowing what data is collected allows you to make informed privacy choices.</div>
-                </div>
-            </fieldset>
-        </div>
+      <div class="accordion-body">
+        <fieldset>
+          <legend class="visually-hidden">Do you review app permissions?</legend>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="q14" value="yes">
+              <span>Yes</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="q14" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/device-security' target='_blank' rel='noopener'>Review and reduce app permissions to only what's necessary.</a>">
+              <span>No</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="q14" value="unknown">
+              <span>I don't know</span>
+            </label>
+          </div>
+
+          <div class="why-section">
+            <div class="why-title">Why this matters</div>
+            <div class="why-content">Apps can access sensitive sensors and data. Minimising access reduces accidental sharing and risk.</div>
+          </div>
+<!-- Help for non-technical users -->
+          <details class="check-details" role="group" aria-labelledby="check-summary">
+            <summary id="check-summary">How to check</summary>
+            <p>1) Phone Settings → <strong>Privacy</strong> / <strong>Permissions</strong>.<br>
+               2) For each permission (camera, mic, location), deny apps that don’t need it or set to “Ask every time”.</p>
+          </details>
+        </fieldset>
+      </div>
     </div>
+  </div>
+  
+<!-- Question 15 -->   
+
+<div class="accordion-item">
+    <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
+      <div class="accordion-title">Have you adjusted social media privacy so posts and profile details are not public by default?</div>
+      <div class="accordion-icon">▼</div>
+    </div>
+    <div class="accordion-content" aria-hidden="true">
+      <div class="accordion-body">
+        <fieldset>
+          <legend class="visually-hidden">Have you adjusted social media privacy?</legend>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="q15" value="yes">
+              <span>Yes</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="q15" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/mitigating-social-media-risks' target='_blank' rel='noopener'>Limit audience for posts and hide sensitive profile details from the public.</a>">
+              <span>No</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="q15" value="unknown">
+              <span>I don't know</span>
+            </label>
+          </div>
+
+          <div class="why-section">
+            <div class="why-title">Why this matters</div>
+            <div class="why-content">Public profiles can leak personal info (birthdays, locations) used for scams or identity theft.</div>
+          </div>
+<!-- Help for non-technical users -->
+          <details class="check-details" role="group" aria-labelledby="check-summary">
+            <summary id="check-summary">How to check</summary>
+            <p>1) Open each social app → <strong>Settings</strong> → <strong>Privacy</strong>.<br>
+               2) Set default audience to <strong>Friends</strong>; review profile fields and restrict visibility.</p>
+          </details>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  
+ <!-- Question 16 --> 
+ 
+ <div class="accordion-item">
+  <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
+    <div class="accordion-title">Do you back up important photos and documents regularly (cloud or external drive)?</div>
+    <div class="accordion-icon">▼</div>
+  </div>
+  <div class="accordion-content" aria-hidden="true">
+    <div class="accordion-body">
+      <fieldset>
+        <legend class="visually-hidden">Do you back up important data?</legend>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q16" value="yes">
+            <span>Yes</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q16" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/backing-up-your-data' target='_blank' rel='noopener'>Turn on automatic backups (cloud or external drive) so you don’t lose precious files to loss, theft or ransomware.</a>">
+            <span>No</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q16" value="unknown">
+            <span>I don't know</span>
+          </label>
+        </div>
+
+        <div class="why-section">
+          <div class="why-title">Why this matters</div>
+          <div class="why-content">
+            Backups protect against device loss, damage and ransomware. Following the “3-2-1” approach (3 copies, 2 different types of storage, 1 off-site/cloud) greatly reduces the risk of permanent data loss.
+          </div>
+        </div>
+<!-- Help for non-technical users -->
+        <details class="check-details" role="group" aria-labelledby="check-summary">
+          <summary id="check-summary">How to check</summary>
+          <p>
+            <strong>Phones/Tablets:</strong><br>
+            • iPhone/iPad: Settings → <strong>[your name]</strong> → <strong>iCloud</strong> → <strong>iCloud Backup</strong> → Turn on.<br>
+            • Android: Settings → <strong>Google</strong> → <strong>Backup</strong> (or Manufacturer cloud) → Turn on.
+          </p>
+          <p>
+            <strong>Computers:</strong><br>
+            • Windows: Settings → <strong>Accounts</strong> → <strong>Windows Backup</strong> or set up <strong>File History</strong> / OneDrive.<br>
+            • macOS: System Settings → <strong>Time Machine</strong> → Select disk and enable automatic backups.
+          </p>
+          <p>
+            <strong>Good practice:</strong> Schedule automatic backups, keep at least one copy in the cloud or off-site, and periodically test restoring a non-critical file to make sure it works.
+          </p>
+        </details>
+      </fieldset>
+    </div>
+  </div>
 </div>
+
 <div class="button-row">
 		<button type="button" class="btn backBtn" onclick="checklist.prevPage()">Back</button>
 		<button type="button" class="btn nextBtn" onclick="checklist.showResults()">Complete Assessment</button>
 	</div>
-</div>
+</div>	
 
 </form>
 
