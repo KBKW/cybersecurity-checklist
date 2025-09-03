@@ -2,471 +2,14 @@
 
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Household Cybersecurity Checklist</title>
-<style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #f0f8ff 0%, #6b9ddf 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-		
-		details {
-		  overflow: visible;
-		  margin-top: 0.5rem;
-		}
-		
-		.check-details {
-		  background-color: #f1f9ff;
-		  border: 1px solid #cce4f6;
-		  border-radius: 5px;
-		  padding: 1rem;
-		  margin-top: 1rem;
-		  font-size: 0.95rem;
-		  color: #333;
-		}
-
-		.check-details summary {
-		  font-weight: bold;
-		  color: #007bff;
-		  cursor: pointer;
-		  list-style: none;
-		  position: relative;
-		}
-		
-		.check-details summary:focus {
-		  outline: 3px solid #80bdff;
-		  outline-offset: 2px;
-		  background-color: #e8f4ff;
-		}
-		
-		.check-details summary:hover {
-		  background-color: #eef7ff;
-		}
-
-		.check-details summary::marker {
-		  display: none;
-		}
-		
-		.check-details summary::after {
-		  content: "▼";
-		  position: absolute;
-		  right: 0;
-		  font-size: 0.8rem;
-		  transform: rotate(0deg);
-		  transition: transform 0.3s ease;
-		}
-
-		.check-details[open] summary::after {
-		  transform: rotate(180deg);
-		}
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-
-        .progress-indicator {
-            background: #f8f9fa;
-            padding: 20px;
-            text-align: center;
-            border-bottom: 1px solid #e9ecef;
-        }
-
-        .progress-text {
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-
-        .progress-bar {
-            background: #e9ecef;
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
-
-        .progress-fill {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            height: 100%;
-            transition: width 0.3s ease;
-        }
-
-        .page {
-            padding: 30px;
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        .page-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid #f0f0f0;
-        }
-
-        .page-header h2 {
-            font-size: 2em;
-            font-weight: 700;
-            color: #2c3e50;
-            margin: 0;
-        }
-
-        .accordion-item {
-            margin-bottom: 15px;
-            border: 2px solid #f0f0f0;
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .accordion-item:hover {
-            border-color: #3498db;
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.1);
-        }
-
-        .accordion-item.error {
-            border-color: #dc3545 !important;
-            box-shadow: 0 0 5px rgba(220, 53, 69, 0.5);
-        }
-
-        .accordion-header {
-            background: #f8f9fa;
-            padding: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-            user-select: none;
-        }
-
-        .accordion-header:hover {
-            background: #e9ecef;
-        }
-
-        .accordion-header.active {
-            background: #3498db;
-            color: white;
-        }
-
-        .accordion-title {
-            font-size: 1.1em;
-            font-weight: 600;
-            flex: 1;
-            margin-right: 20px;
-            line-height: 1.4;
-        }
-
-        .accordion-icon {
-            font-size: 1.5em;
-            transition: transform 0.3s ease;
-            font-weight: bold;
-        }
-
-        .accordion-header.active .accordion-icon {
-            transform: rotate(180deg);
-        }
-
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            background: white;
-        }
-
-        .accordion-body {
-            padding: 25px;
-        }
-		
-		fieldset {
-		border: none;
-		padding: 0;
-		margin: 0;
-}
-		
-		.visually-hidden {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		margin: -1px;
-		padding: 0;
-		overflow: hidden;
-		clip: rect(0 0 0 0);
-		border: 0;
-}
-
-        .radio-group {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .radio-option {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            padding: 10px 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .radio-option:hover {
-            border-color: #3498db;
-            background: #f8f9fa;
-        }
-
-        .radio-option input[type="radio"] {
-            margin: 0;
-            width: 16px;
-            height: 16px;
-            accent-color: #3498db;
-        }
-
-        .radio-option input[type="radio"]:checked + span {
-            color: #3498db;
-            font-weight: 600;
-        }
-
-        .radio-option:has(input[type="radio"]:checked) {
-            border-color: #3498db;
-            background: #e3f2fd;
-        }
-
-        .why-section {
-            margin-top: 15px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid #3498db;
-        }
-
-        .why-title {
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 8px;
-            font-size: 0.95em;
-        }
-
-        .why-content {
-            color: #5a6c7d;
-            line-height: 1.5;
-            font-size: 0.9em;
-        }
-
-        .button-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 30px;
-            background: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 25px;
-            font-size: 1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .nextBtn {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-        }
-
-        .nextBtn:hover {
-            background: linear-gradient(135deg, #2980b9, #21618c);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
-        }
-
-        .backBtn {
-            background: #6c757d;
-            color: white;
-        }
-
-        .backBtn:hover {
-            background: #5a6268;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
-        }
-
-        .result {
-            display: none;
-            margin: 30px;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            border: 3px solid;
-        }
-
-        .result.low {
-            background-color: #d4edda;
-            border-color: #c3e6cb;
-            color: #155724;
-        }
-
-        .result.low-medium {
-            background-color: #fff3cd;
-            border-color: #ffeeba;
-            color: #856404;
-        }
-
-        .result.medium {
-            background-color: #ffeeba;
-            border-color: #f5c6cb;
-            color: #856404;
-        }
-
-        .result.medium-high {
-            background-color: #f8d7da;
-            border-color: #f5c6cb;
-            color: #721c24;
-        }
-
-        .result.high {
-            background-color: #f5c6cb;
-            border-color: #dc3545;
-            color: #721c24;
-        }
-
-        .result h3 {
-            font-size: 1.8em;
-            margin-bottom: 15px;
-        }
-
-        .result p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-		.result ul {
-            text-align: left;
-            max-width: 600px;
-            margin: 20px auto;
-        }
-
-        .result li {
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-		
-        .download-link {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #28a745, #20c997);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .download-link:hover {
-            background: linear-gradient(135deg, #218838, #1e7e34);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
-        }
-
-        .privacy-note {
-            font-size: 0.85em;
-            text-align: center;
-            color: #555;
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                margin: 10px;
-                border-radius: 15px;
-            }
-            
-            .header {
-                padding: 20px;
-            }
-            
-            .header h1 {
-                font-size: 2em;
-            }
-            
-            .page {
-                padding: 20px;
-            }
-            
-            .accordion-header {
-                padding: 15px;
-            }
-            
-            .accordion-title {
-                font-size: 1em;
-            }
-            
-            .radio-group {
-                flex-direction: column;
-                gap: 10px;
-            }
-			
-			.tooltip {
-			  display: inline-block;
-			  color: #007bff;
-			  cursor: help;
-			  font-size: 1em;
-			  margin-left: 6px;
-}
-        }
-    </style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Household Cybersecurity Checklist</title>
+	<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
     <div class="container">
         <div class="header">
             <h1>Household Cybersecurity Checklist</h1>
@@ -480,7 +23,7 @@
 
 
     <div class="progress-indicator">
-        <div class="progress-text" id="pageIndicator">Page 1 of 4</div>
+        <div class="progress-text" id="pageIndicator" aria-live="polite">Page 1 of 5</div>
         <div class="progress-bar">
         <div class="progress-fill" id="progressFill"></div>
         </div>
@@ -513,11 +56,11 @@
 						<span>Yes</span>
 					</label>
 					<label class="radio-option">
-						<input type="radio" name="q1" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/smart-devices-in-the-home' target='_blank'>Change default credentials on your smart devices to prevent unauthorised access.</a>">
+						<input type="radio" name="q1" value="no" data-priority="4" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/smart-devices-in-the-home#section_4' target='_blank' rel='noopener'>Change default credentials on your smart devices to prevent unauthorised access.</a>">
 						<span>No</span>
 					</label>
 					<label class="radio-option">
-						  <input type="radio" name="q1" value="unknown">
+						  <input type="radio" name="q1" value="unknown" data-priority="4">
 						  <span>I don't know</span>
 					</label>
 				</div>
@@ -528,8 +71,8 @@
 				</div>
 				
 				 <!-- Help for non-technical users -->
-        <details class="check-details" role="group" aria-labelledby="check-summary">
-          <summary id="check-summary">How to check</summary>
+        <details class="check-details" role="group" aria-labelledby="check-summary-Q1">
+          <summary id="check-summary-Q1">How to check</summary>
           <p>1. Open the app or webpage that controls your smart device.<br>
 			2. Look in the settings or account/security section for login details.<br>
 			3. If you see “admin” or similar as the username, and no password or a simple one like “1234” – it’s likely still the default.<br>
@@ -559,11 +102,11 @@
 						<span>Yes</span>
 					</label>
 					<label class="radio-option">
-						<input type="radio" name="q2" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/smart-devices-in-the-home' target='_blank'>Update smart devices to prevent vulnerabilities</a>">
+						<input type="radio" name="q2" value="no" data-priority="3" data-recommendation="<a href='https://www.gov.uk/government/publications/smart-devices-using-them-safely-in-your-home/smart-devices-using-them-safely-in-your-home#keeping-your-device-updated' target='_blank' rel='noopener'>Update smart devices to prevent vulnerabilities. Installing software updates promptly helps keep your devices secure.</a>">
 						<span>No</span>
 					</label>
 					<label class="radio-option">
-						  <input type="radio" name="q2" value="unknown">
+						  <input type="radio" name="q2" value="unknown" data-priority="3">
 						  <span>I don't know</span>
 					</label>
 				</div>
@@ -573,8 +116,8 @@
 				</div>
 				
  <!-- Help for non-technical users -->
-        <details class="check-details" role="group" aria-labelledby="check-summary">
-          <summary id="check-summary">How to check</summary>
+        <details class="check-details" role="group" aria-labelledby="check-summary-Q2">
+          <summary id="check-summary-Q2">How to check</summary>
           <p>1. Open the app that controls your smart device.  <br>
 			2. Look under <strong>Settings</strong> or <strong>Device Info</strong> for options like "Firmware", "Software Update", or "Automatic Updates".<br>
 			3. Turn on auto-update if it’s available.<br>
@@ -603,22 +146,23 @@
 						<span>Yes</span>
 					</label>
 					<label class="radio-option">
-						<input type="radio" name="q3" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/secure-your-devices' target='_blank'>Change default credentials on your smart devices to prevent unauthorised access.</a>">
+						<input type="radio" name="q3" value="no" data-priority="3" data-recommendation="<a href='https://ico.org.uk/for-the-public/online/smart-products/' target='_blank'>Manage the personal information you share,
+						protect yourself from security risks posed by hackers, avoid sharing more information than you want to and lower your chances of becoming a victim of identity fraud.</a>">
 						<span>No</span>
 					</label>
 					<label class="radio-option">
-						  <input type="radio" name="q3" value="unknown">
+						  <input type="radio" name="q3" value="unknown" data-priority="3">
 						  <span>I don't know</span>
 					</label>
 				</div>
 				<div class="why-section">
 					<div class="why-title">Why this matters</div>
-					<div class="why-content">Smart devices often collect data. Reviewing settings helps you protect your privacy.</div>
+					<div class="why-content">Smart devices often collect data. Reviewing settings helps you protect your privacy and protect you from identity fraud.</div>
 				</div>
 <!-- Help for non-technical users -->
-				<details class="check-details" role="group" aria-labelledby="check-summary">
-					<summary id="check-summary">How to check</summary>
-					<p>Open the smart device’s companion app, go to <strong>Settings &gt; Privacy</strong>, and review options for data collection, history, and sharing. Disable or restrict where possible.</p>
+				<details class="check-details" role="group" aria-labelledby="check-summary-Q3">
+					<summary id="check-summary-Q3">How to check</summary>
+					<p>Open the smart device’s app, go to <strong>Settings &gt; Privacy</strong>, and review options for data collection, history, and sharing. Disable or restrict where possible.</p>
 					</details>
 				</fieldset>
 			</div>
@@ -627,42 +171,53 @@
 	
 <!-- Question 4 -->	
 
-<div class="accordion-item">
-		<div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
-			<div class="accordion-title">Do you know how many smart devices are connected to your home network?</div>
-			<div class="accordion-icon">▼</div>
-		</div>
-		<div class="accordion-content" aria-hidden="true">
-			<div class="accordion-body">
-			<fieldset>
-          <legend class="visually-hidden">Do you know how many smart devices are connected to your home network?</legend>
-				<div class="radio-group">
-					<label class="radio-option">
-						<input type="radio" name="q4" value="yes">
-						<span>Yes</span>
-					</label>
-					<label class="radio-option">
-						<input type="radio" name="q4" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/secure-your-devices' target='_blank'>Change default credentials on your smart devices to prevent unauthorised access.</a>">
-						<span>No</span>
-					</label>
-					<label class="radio-option">
-						  <input type="radio" name="q4" value="unknown">
-						  <span>I don't know</span>
-					</label>
-				</div>
-				<div class="why-section">
-					<div class="why-title">Why this matters</div>
-					<div class="why-content">Unrecognised or forgotten devices on your network may be vulnerable or unauthorised. Keeping track helps maintain security on your IoT devices.</div>
-				</div>
-<!-- Help for non-technical users -->
-				<details class="check-details" role="group" aria-labelledby="check-summary">
-					<summary id="check-summary">How to check</summary>
-						<p>Log into your router’s web interface or companion app. Open the <strong>Connected devices</strong> or <strong>Device list</strong> section and count how many are connected. Confirm they belong to you.</p>
-					</details>
-				</fieldset>
+	<div class="accordion-item">
+	  <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
+		<div class="accordion-title">Do you use antivirus and firewall protection to help secure your smart devices and home network?</div>
+		<div class="accordion-icon">▼</div>
+	  </div>
+	  <div class="accordion-content" aria-hidden="true">
+		<div class="accordion-body">
+		  <fieldset>
+			<legend class="visually-hidden">Do you use antivirus and firewall protection to help secure your smart devices and home network?</legend>
+			<div class="radio-group">
+			  <label class="radio-option">
+				<input type="radio" name="q4" value="yes">
+				<span>Yes</span>
+			  </label>
+			  <label class="radio-option">
+				<input type="radio" name="q4" value="no" data-priority="3" 
+				  data-recommendation="<a href='https://www.ncsc.gov.uk/collection/device-security-guidance/policies-and-settings/antivirus-and-other-security-software' target='_blank' rel='noopener'>Install reputable antivirus software on computers/phones that manage your devices, and ensure your router’s firewall is turned on.</a>">
+				<span>No</span>
+			  </label>
+			  <label class="radio-option">
+				<input type="radio" name="q4" value="unknown" data-priority="3">
+				<span>I don't know</span>
+			  </label>
 			</div>
+
+			<div class="why-section">
+			  <div class="why-title">Why this matters</div>
+			  <div class="why-content">
+				Smart devices are often targeted by malware and hackers looking for weak points in your home network. 
+				Antivirus software can detect and block malicious activity, while a firewall helps prevent unauthorised connections to your IoT devices.
+			  </div>
+			</div>
+
+			<!-- Help for non-technical users -->
+			<details class="check-details" role="group" aria-labelledby="check-summary-Q4">
+			  <summary id="check-summary-Q4">How to check</summary>
+			  <p>
+				1. On your computer or phone, check if antivirus software is installed and updated.<br>
+				2. Open your router’s settings (often at 192.168.1.1 in your web browser).<br>
+				3. Look under <strong>Security</strong> or <strong>Firewall</strong> to confirm the firewall is switched on.<br>
+				4. If you don’t have antivirus software, install a reputable one (many good free versions exist).<br>
+			  </p>
+			</details>
+		  </fieldset>
 		</div>
-	</div>	
+	  </div>
+	</div>
 	
 	<div class="button-row">
 		
@@ -694,11 +249,11 @@
               <span>Yes</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="q5" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online#section_2' target='_blank' rel='noopener'>Avoid re-using passwords; use strong and unique passwords for each account.</a>">
+              <input type="radio" name="q5" value="no" data-priority="5" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/small-business-guide/using-passwords-protect-your-data' target='_blank' rel='noopener'>Avoid re-using passwords; use strong and unique passwords for each account.</a>">
               <span>No</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="q5" value="unknown">
+              <input type="radio" name="q5" value="unknown" data-priority="5">
               <span>I don't know</span>
             </label>
           </div>
@@ -708,8 +263,8 @@
             <div class="why-content">If one site is breached, re-used passwords can let attackers into your other accounts.</div>
           </div>
 <!-- Help for non-technical users -->
-          <details class="check-details" role="group" aria-labelledby="check-summary">
-            <summary id="check-summary">How to check</summary>
+          <details class="check-details" role="group" aria-labelledby="check-summary-Q5">
+            <summary id="check-summary-Q5">How to check</summary>
             <p>1) List your key accounts; note if any share the same password.<br>
                2) If yes, change them to unique passwords (use a manager for convenience).</p>
           </details>
@@ -735,11 +290,11 @@
 						<span>Yes</span>
 					</label>
 					<label class="radio-option">
-						<input type="radio" name="q6" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/passwords#section_1' target='_blank' rel='noopener'>Use a reputable password manager to create and store unique passwords securely.</a>">
+						<input type="radio" name="q6" value="no" data-priority="4" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/passwords#section_1' target='_blank' rel='noopener'>Use a reputable password manager to create and store unique passwords securely.</a>">
 						<span>No</span>
 					</label>
 					<label class="radio-option">
-              <input type="radio" name="q6" value="unknown">
+              <input type="radio" name="q6" value="unknown" data-priority="4">
               <span>I don't know</span>
             </label>
 				</div>
@@ -748,8 +303,8 @@
 					<div class="why-content">Managers reduce password re-use and help you use stronger, unique passwords without needing to remember them all.</div>
 				</div>
 <!-- Help for non-technical users -->
-			<details class="check-details" role="group" aria-labelledby="check-summary">
-            <summary id="check-summary">How to check</summary>
+			<details class="check-details" role="group" aria-labelledby="check-summary-Q6">
+            <summary id="check-summary-Q6">How to check</summary>
             <p>1) If you store passwords in notes or reuse them, install a manager (e.g., built-in browser store or dedicated app).<br>
                2) Move key accounts into the manager and enable autofill/alerts.</p>
           </details>	
@@ -775,11 +330,11 @@
 						<span>Yes</span>
 					</label>
 					<label class="radio-option">
-						<input type="radio" name="q7" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/passwords#section_4' target='_blank' rel='noopener'>Turn on 2FA to protect accounts even if a password is stolen.</a>">
+						<input type="radio" name="q7" value="no" data-priority="5" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/setting-2-step-verification-2sv?trk=public_post_comment-text' target='_blank' rel='noopener'>Setting up 2 factor authentication can help protect your online accounts, even if your password is stolen.</a>">
 						<span>No</span>
 					</label>
 					<label class="radio-option">
-              <input type="radio" name="q7" value="unknown">
+              <input type="radio" name="q7" value="unknown" data-priority="5">
               <span>I don't know</span>
             </label>
 				</div>
@@ -788,10 +343,10 @@
 					<div class="why-content">2FA adds an extra layer of security, making it harder for attackers to access your accounts even if they get your password.</div>
 				</div>
 <!-- Help for non-technical users -->
-				<details class="check-details" role="group" aria-labelledby="check-summary">
-            <summary id="check-summary">How to check</summary>
+				<details class="check-details" role="group" aria-labelledby="check-summary-Q7">
+            <summary id="check-summary-Q7">How to check</summary>
             <p>1) Open account <strong>Security</strong> settings (email/bank/social).<br>
-               2) Enable <strong>Two-Factor Authentication</strong> (prefer an authenticator app over SMS if available).<br>
+               2) Enable <strong>Two-Factor Authentication</strong> (use an authenticator app over SMS if available).<br>
                3) Store backup codes safely.</p>
           </details>
 				</fieldset>
@@ -816,11 +371,11 @@
 						<span>Yes</span>
 					</label>
 					<label class="radio-option">
-						<input type="radio" name="q8" value="no" data-recommendation="<a href='https://haveibeenpwned.com/' target='_blank' rel='noopener'>Check if your email is in a breach and change affected passwords immediately.</a>">
+						<input type="radio" name="q8" value="no" data-priority="4" data-recommendation="<a href='https://haveibeenpwned.com/' target='_blank' rel='noopener'>Check if your email is in a breach and change affected passwords immediately.</a>">
 						<span>No</span>
 					</label>
 					<label class="radio-option">
-              <input type="radio" name="q8" value="unknown">
+              <input type="radio" name="q8" value="unknown" data-priority="4">
               <span>I don't know</span>
             </label>
 				</div>
@@ -829,8 +384,8 @@
 					<div class="why-content">If your email appears in a breach, attackers may try your passwords elsewhere (“credential stuffing”).</div>
 				</div>
 <!-- Help for non-technical users -->
-				<details class="check-details" role="group" aria-labelledby="check-summary">
-            <summary id="check-summary">How to check</summary>
+				<details class="check-details" role="group" aria-labelledby="check-summary-Q8">
+            <summary id="check-summary-Q8">How to check</summary>
             <p>1) Visit haveibeenpwned.com and enter your email.<br>
                2) If breached, change those passwords and enable 2FA.<br>
                3) Turn on breach alerts (via manager or service).</p>
@@ -870,23 +425,23 @@
 						<span>Yes</span>
 					</label>
 					<label class="radio-option">
-						<input type="radio" name="q9" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/secure-your-devices' target='_blank'>Change default credentials on your smart devices to prevent unauthorised access.</a>">
+						<input type="radio" name="q9" value="no" data-priority="5" data-recommendation="<a href='https://ico.org.uk/for-the-public/online/wifi-security' target='_blank' rel='noopener'>You should change the network name from the router’s default. This can make it harder for anyone to identify the manufacturer of your router and guess its default settings.</a>">
 						<span>No</span>
 					</label>
 					<label class="radio-option">
-              <input type="radio" name="q9" value="unknown">
+              <input type="radio" name="q9" value="unknown" data-priority="5">
               <span>I don't know</span>
             </label>
 				</div>
 				
 				<div class="why-section">
 					<div class="why-title">Why this matters</div>
-					<div class="why-content">Default router passwords are widely known and often targeted by attackers to take over your network.</div>
+					<div class="why-content">Default router passwords are widely known and often targeted by attackers to take over your network. Changing the SSID also makes it harder to guess your router model and default settings.</div>
 				</div>
 <!-- Help for non-technical users -->
-				<details class="check-details" role="group" aria-labelledby="check-summary">
-            <summary id="check-summary">How to check</summary>
-            <p>1) Open your router app or browse to its address (e.g., 192.168.0.1) which is usually on the back of your router.<br>
+				<details class="check-details" role="group" aria-labelledby="check-summary-Q9">
+            <summary id="check-summary-Q9">How to check</summary>
+            <p>1) Log into your router app or web portal (often by typing <code>192.168.0.1</code> or <code>192.168.1.1</code> into a browser).<br>
                2) Login and change admin password; then rename SSID and set a strong Wi-Fi password (WPA2/WPA3).</p>
           </details>
 				</fieldset>
@@ -897,24 +452,24 @@
 <!-- Question 10 -->
 <div class="accordion-item">
 		<div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
-			<div class="accordion-title">Is your router firmware up to date (automatic updates enabled where available)?</div>
+			<div class="accordion-title">Is your router firmware and software apps up to date (automatic updates enabled where available)?</div>
 			<div class="accordion-icon">▼</div>
 		</div>
 		<div class="accordion-content" aria-hidden="true">
 			<div class="accordion-body">
 			<fieldset>
-          <legend class="visually-hidden">Is your router firmware up to date (automatic updates enabled where available)?</legend>
+          <legend class="visually-hidden">Is your router firmware and software apps up to date (automatic updates enabled where available)?</legend>
 				<div class="radio-group">
 					<label class="radio-option">
 						<input type="radio" name="q10" value="yes">
 						<span>Yes</span>
 					</label>
 					<label class="radio-option">
-						<input type="radio" name="q10" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/secure-your-devices' target='_blank'>Enable router auto-updates or install the latest firmware to fix known flaws.</a>">
+						<input type="radio" name="q10" value="no" data-priority="4" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/install-the-latest-software-and-app-updates' target='_blank' rel='noopener'>You should apply updates to your apps and your devices as soon as they are available. Updates include protection from viruses and other kinds of malware, and will often include improvements and new features. </a>">
 						<span>No</span>
 					</label>
 					<label class="radio-option">
-              <input type="radio" name="q10" value="unknown">
+              <input type="radio" name="q10" value="unknown" data-priority="4">
               <span>I don't know</span>
             </label>
 				</div>
@@ -923,10 +478,18 @@
 					<div class="why-content">Updates fix (patch) known vulnerabilities to prevent attackers actively exploiting them .</div>
 				</div>
 <!-- Help for non-technical users -->
-			<details class="check-details" role="group" aria-labelledby="check-summary">
-            <summary id="check-summary">How to check</summary>
-            <p>1) Router app/web → <strong>Administration</strong>/<strong>Firmware</strong>.<br>
-               2) Turn on auto-updates or click <strong>Check for updates</strong> and apply.</p>
+			<details class="check-details" role="group" aria-labelledby="check-summary-Q10">
+            <summary id="check-summary-Q10">How to check</summary>
+            <p><strong>Router firmware:</strong><br>
+            1) Log into your router app or web portal (often by typing <code>192.168.0.1</code> or <code>192.168.1.1</code> into a browser).<br>
+            2) Look for a menu called <strong>Administration</strong>, <strong>System</strong>, or <strong>Firmware</strong>.<br>
+            3) Turn on <strong>Auto-update</strong> if available, or click <strong>Check for updates</strong> and apply the update.<br><br>
+
+            <strong>Apps and software:</strong><br>
+            1) On your phone/tablet, open the <strong>App Store</strong> (iOS) or <strong>Google Play Store</strong> (Android).<br>
+            2) Go to <strong>Manage apps & updates</strong> (Android) or <strong>Account → Updates</strong> (iOS).<br>
+            3) Enable <strong>Automatic Updates</strong> in the store settings, or manually update apps you use to control smart devices.<br>
+            4) On PCs/laptops, make sure Windows Update or macOS Software Update is turned on.<br>
           </details>	
 				</fieldset>
 			</div>
@@ -937,37 +500,40 @@
 
 	<div class="accordion-item">
     <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
-      <div class="accordion-title">Do you regularly review connected devices and remove ones you don’t recognise?</div>
+      <div class="accordion-title">Is your Wi-Fi set up safely (Guest Wi-Fi for visitors, WPS turned off, and unknown devices removed)?</div>
       <div class="accordion-icon">▼</div>
     </div>
     <div class="accordion-content" aria-hidden="true">
       <div class="accordion-body">
         <fieldset>
-          <legend class="visually-hidden">Do you regularly review connected devices and remove ones you don’t recognise?</legend>
+          <legend class="visually-hidden">Is your Wi-Fi set up safely (Guest Wi-Fi for visitors, WPS turned off, and unknown devices removed)?</legend>
           <div class="radio-group">
             <label class="radio-option">
               <input type="radio" name="q11" value="yes">
               <span>Yes</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="q11" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/home-devices-secure' target='_blank' rel='noopener'>Check the connected devices list regularly and remove unknown devices.</a>">
+              <input type="radio" name="q11" value="no" data-priority="4" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/home-devices-secure' target='_blank' rel='noopener'>Check the connected devices list regularly and remove unknown devices.</a>">
               <span>No</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="q11" value="unknown">
+              <input type="radio" name="q11" value="unknown" data-priority="4">
               <span>I don't know</span>
             </label>
           </div>
 
           <div class="why-section">
             <div class="why-title">Why this matters</div>
-            <div class="why-content">Unknown devices could be neighbours or attackers using your network, slowing it down and risking your data.</div>
+            <div class="why-content">Guest Wi-Fi keeps visitors and IoT separate from your main devices. Turning off WPS closes an easy way in.
+            Removing unknown devices stops unauthorised access.</div>
           </div>
 <!-- Help for non-technical users -->
-          <details class="check-details" role="group" aria-labelledby="check-summary">
-            <summary id="check-summary">How to check</summary>
-            <p>1) Router app/web → <strong>Connected Devices</strong>.<br>
-               2) Rename known devices; block or forget unknown ones; change Wi-Fi password if unsure.</p>
+          <details class="check-details" role="group" aria-labelledby="check-summary-Q11">
+            <summary id="check-summary-Q11">How to check</summary>
+            <p>1) Log into your router app or web portal (often by typing <code>192.168.0.1</code> or <code>192.168.1.1</code> into a browser).<br>
+            2) Look for <strong>Wireless/Guest Network</strong>, enable it and give it a different password.<br>
+            3) In <strong>Wireless/Advanced</strong>, find <strong>WPS</strong> and set it to <strong>Off</strong> (or disable PIN).<br>
+            4) Open <strong>Connected Devices/Device List</strong>, rename things you recognise, and remove/block anything unfamiliar.</p>
           </details>
         </fieldset>
       </div>
@@ -977,87 +543,58 @@
 	
 <!-- Question 12 -->
 	<div class="accordion-item">
-		<div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
-			<div class="accordion-title">Do you use a separate Guest Wi-Fi for visitors and untrusted devices?</div>
-			<div class="accordion-icon">▼</div>
-		</div>
-		<div class="accordion-content" aria-hidden="true">
-			<div class="accordion-body">
-			<fieldset>
-          <legend class="visually-hidden">Do you use a separate Guest Wi-Fi for visitors and untrusted devices?</legend>
-				<div class="radio-group">
-					<label class="radio-option">
-						<input type="radio" name="q12" value="yes">
-						<span>Yes</span>
-					</label>
-					<label class="radio-option">
-						<input type="radio" name="q12" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/home-networking' target='_blank' rel='noopener'>Enable a Guest Wi-Fi to isolate visitors from your main devices.</a>">
-						<span>No</span>
-					</label>
-					<label class="radio-option">
-              <input type="radio" name="q12" value="unknown">
-              <span>I don't know</span>
-            </label>
-				</div>
-				
-				<div class="why-section">
-					<div class="why-title">Why this matters</div>
-					<div class="why-content">A guest network limits what visitors can access if their device is infected.</div>
-				</div>
-<!-- Help for non-technical users -->
-				<details class="check-details" role="group" aria-labelledby="check-summary">
-            <summary id="check-summary">How to check</summary>
-            <p>1) Router app/web → <strong>Wireless</strong> → <strong>Guest Network</strong>.<br>
-               2) Enable, set a different password, and hide LAN access if offered.</p>
-          </details>
-				</fieldset>
-			</div>
-		</div>
-	</div>
-	
-<!-- Question 13 -->	
-	<div class="accordion-item">
-		<div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
-        <div class="accordion-title">Is WPS (Wi-Fi Protected Setup) disabled on your router?</div>
-        <div class="accordion-icon">▼</div>
-    </div>
-    <div class="accordion-content" aria-hidden="true">
-        <div class="accordion-body">
-            <fieldset>
-                <legend class="visually-hidden">Is WPS (Wi-Fi Protected Setup) disabled on your router?</legend>
-                <div class="radio-group">
-                    <label class="radio-option">
-                        <input type="radio" name="q13" value="yes">
-                        <span>Yes</span>
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="q13" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/home-networking' target='_blank' rel='noopener'>Disable WPS to prevent easy PIN-based compromise of Wi-Fi.</a>">
-                        <span>No</span>
-                    </label>
-					<label class="radio-option">
-              <input type="radio" name="q13" value="unknown">
-              <span>I don't know</span>
-            </label>
-                </div>
-                <div class="why-section">
-                    <div class="why-title">Why this matters</div>
-                    <div class="why-content">WPS can be brute-forced; turning it off makes your Wi-Fi much harder to break into.</div>
-                </div>
-<!-- Help for non-technical users -->
-			<details class="check-details" role="group" aria-labelledby="check-summary">
-            <summary id="check-summary">How to check</summary>
-            <p>1) Router app/web → <strong>Wireless</strong>/<strong>Advanced</strong> → <strong>WPS</strong>.<br>
-               2) Set WPS to <strong>Off</strong> (or disable PIN).</p>	
-            </fieldset>
+  <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
+    <div class="accordion-title">Do you use network-level web protection (e.g., your broadband provider’s “Safe Browsing/Web Protect”) to block malicious sites?</div>
+    <div class="accordion-icon">▼</div>
+  </div>
+  <div class="accordion-content" aria-hidden="true">
+    <div class="accordion-body">
+      <fieldset>
+        <legend class="visually-hidden">Do you use network-level web protection to block malicious sites?</legend>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q12" value="yes">
+            <span>Yes</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q12" value="no" data-priority="3"
+              data-recommendation="Turn on your broadband provider’s Safe Browsing/Web Protect (or equivalent) to block known phishing and malware websites for all devices on your Wi-Fi.">
+            <span>No</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q12" value="unknown" data-priority="3">
+            <span>I don't know</span>
+          </label>
         </div>
+
+        <div class="why-section">
+          <div class="why-title">Why this matters</div>
+          <div class="why-content">
+            Network-level protection helps stop phishing and malware before pages even load, protecting every device on your Wi-Fi —
+            including smart TVs, tablets and guests.
+          </div>
+        </div>
+
+        <!-- Help for non-technical users -->
+        <details class="check-details" role="group" aria-labelledby="check-summary-Q12">
+          <summary id="check-summary-Q12">How to check</summary>
+          <p>
+            1) Log into your broadband account (or router app).<br>
+            2) Look for <strong>Security</strong>, <strong>Web Protect</strong>, <strong>Safe/Secure Browsing</strong>, or <strong>Parental/Content Controls</strong>.<br>
+            3) Turn it on (choose the standard/safe setting). It will protect all devices on your Wi-Fi automatically.
+          </p>
+        </details>
+      </fieldset>
     </div>
+  </div>
+</div>
+	
+<div class="button-row">
+		<button type="button" class="btn backBtn" onclick="CyberChecklist.prevPage()">Back</button>
+		<button type="button" class="btn nextBtn" onclick="CyberChecklist.nextPage()">Next</button>
+	</div>
 </div>
 
-<div class="button-row">
-		<button type="button" class="btn backBtn" onclick="checklist.prevPage()">Back</button>
-		<button type="button" class="btn nextBtn" onclick="checklist.showResults()">Complete Assessment</button>
-	</div>
-</div>
 
 <!-- Page 4: Privacy & Data Awareness -->
 	
@@ -1066,7 +603,7 @@
 		<h2>🛡️ Privacy & Data Awareness</h2>
 	</div>
 	
-<!-- Question 14 --> 
+<!-- Question 13 --> 
 
 	<div class="accordion-item">
     <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
@@ -1079,15 +616,15 @@
           <legend class="visually-hidden">Do you review app permissions?</legend>
           <div class="radio-group">
             <label class="radio-option">
-              <input type="radio" name="q14" value="yes">
+              <input type="radio" name="q13" value="yes">
               <span>Yes</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="q14" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/device-security' target='_blank' rel='noopener'>Review and reduce app permissions to only what's necessary.</a>">
+              <input type="radio" name="q13" value="no" data-priority="3" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/device-security' target='_blank' rel='noopener'>Review and reduce app permissions to only what's necessary.</a>">
               <span>No</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="q14" value="unknown">
+              <input type="radio" name="q13" value="unknown" data-priority="3">
               <span>I don't know</span>
             </label>
           </div>
@@ -1097,8 +634,8 @@
             <div class="why-content">Apps can access sensitive sensors and data. Minimising access reduces accidental sharing and risk.</div>
           </div>
 <!-- Help for non-technical users -->
-          <details class="check-details" role="group" aria-labelledby="check-summary">
-            <summary id="check-summary">How to check</summary>
+          <details class="check-details" role="group" aria-labelledby="check-summary-Q13">
+            <summary id="check-summary-Q13">How to check</summary>
             <p>1) Phone Settings → <strong>Privacy</strong> / <strong>Permissions</strong>.<br>
                2) For each permission (camera, mic, location), deny apps that don’t need it or set to “Ask every time”.</p>
           </details>
@@ -1107,7 +644,7 @@
     </div>
   </div>
   
-<!-- Question 15 -->   
+<!-- Question 14 -->   
 
 <div class="accordion-item">
     <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
@@ -1120,15 +657,15 @@
           <legend class="visually-hidden">Have you adjusted social media privacy?</legend>
           <div class="radio-group">
             <label class="radio-option">
-              <input type="radio" name="q15" value="yes">
+              <input type="radio" name="q14" value="yes">
               <span>Yes</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="q15" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/mitigating-social-media-risks' target='_blank' rel='noopener'>Limit audience for posts and hide sensitive profile details from the public.</a>">
+              <input type="radio" name="q14" value="no" data-priority="3" data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/mitigating-social-media-risks' target='_blank' rel='noopener'>Limit audience for posts and hide sensitive profile details from the public.</a>">
               <span>No</span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="q15" value="unknown">
+              <input type="radio" name="q14" value="unknown" data-priority="3">
               <span>I don't know</span>
             </label>
           </div>
@@ -1138,8 +675,8 @@
             <div class="why-content">Public profiles can leak personal info (birthdays, locations) used for scams or identity theft.</div>
           </div>
 <!-- Help for non-technical users -->
-          <details class="check-details" role="group" aria-labelledby="check-summary">
-            <summary id="check-summary">How to check</summary>
+          <details class="check-details" role="group" aria-labelledby="check-summary-Q14">
+            <summary id="check-summary-Q14">How to check</summary>
             <p>1) Open each social app → <strong>Settings</strong> → <strong>Privacy</strong>.<br>
                2) Set default audience to <strong>Friends</strong>; review profile fields and restrict visibility.</p>
           </details>
@@ -1148,7 +685,7 @@
     </div>
   </div>
   
- <!-- Question 16 --> 
+ <!-- Question 15 --> 
  
  <div class="accordion-item">
   <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
@@ -1161,15 +698,15 @@
         <legend class="visually-hidden">Do you back up important data?</legend>
         <div class="radio-group">
           <label class="radio-option">
-            <input type="radio" name="q16" value="yes">
+            <input type="radio" name="q15" value="yes">
             <span>Yes</span>
           </label>
           <label class="radio-option">
-            <input type="radio" name="q16" value="no" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/backing-up-your-data' target='_blank' rel='noopener'>Turn on automatic backups (cloud or external drive) so you don’t lose precious files to loss, theft or ransomware.</a>">
+            <input type="radio" name="q15" value="no" data-priority="5" data-recommendation="<a href='https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/backing-up-your-data' target='_blank' rel='noopener'>Turn on automatic backups (cloud or external drive) so you don’t lose precious files to loss, theft or ransomware.</a>">
             <span>No</span>
           </label>
           <label class="radio-option">
-            <input type="radio" name="q16" value="unknown">
+            <input type="radio" name="q15" value="unknown" data-priority="5">
             <span>I don't know</span>
           </label>
         </div>
@@ -1181,8 +718,8 @@
           </div>
         </div>
 <!-- Help for non-technical users -->
-        <details class="check-details" role="group" aria-labelledby="check-summary">
-          <summary id="check-summary">How to check</summary>
+        <details class="check-details" role="group" aria-labelledby="check-summary-Q15">
+          <summary id="check-summary-Q15">How to check</summary>
           <p>
             <strong>Phones/Tablets:</strong><br>
             • iPhone/iPad: Settings → <strong>[your name]</strong> → <strong>iCloud</strong> → <strong>iCloud Backup</strong> → Turn on.<br>
@@ -1203,6 +740,204 @@
 </div>
 
 <div class="button-row">
+		<button type="button" class="btn backBtn" onclick="CyberChecklist.prevPage()">Back</button>
+		<button type="button" class="btn nextBtn" onclick="CyberChecklist.nextPage()">Next</button>
+	</div>
+</div>
+
+<!-- Page 5: Social Engineering -->
+	
+<div id="page5" class="page">
+	<div class="page-header">
+		<h2>📬 Social Engineering & Phishing</h2>
+	</div>
+	
+ <!-- Question 16 --> 
+ 
+ <div class="accordion-item">
+    <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
+      <div class="accordion-title">Would you recognise a phishing email or text that pretends to be from your bank, HMRC, or a delivery service?</div>
+      <div class="accordion-icon">▼</div>
+    </div>
+    <div class="accordion-content" aria-hidden="true">
+      <div class="accordion-body">
+        <fieldset>
+          <legend class="visually-hidden">Would you recognise a phishing message?</legend>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="q16" value="yes">
+              <span>Yes</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="q16" value="no" data-priority="4"
+                data-recommendation="<a href='https://www.actionfraud.police.uk/report-phishing' target='_blank' rel='noopener'>Learn how to spot and report phishing emails and texts using official UK guidance.</a>">
+              <span>No</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="q16" value="unknown" data-priority="4">
+              <span>I don't know</span>
+            </label>
+          </div>
+
+          <div class="why-section">
+            <div class="why-title">Why this matters</div>
+            <div class="why-content">Phishing is a common way criminals steal passwords and money. Spotting the signs (odd sender, urgent threats, suspicious links) prevents most attacks.</div>
+          </div>
+
+          <!-- Help for non-technical users -->
+          <details class="check-details" role="group" aria-labelledby="check-summary-Q16">
+            <summary id="check-summary-Q16">How to check</summary>
+            <p>1) Be wary of messages that are unexpected, urgent, or ask for personal info.<br>
+               2) Check the sender address carefully (not just the display name).<br>
+               3) Hover over links (or long-press on mobile) to preview the web address: if it looks odd, don’t click.<br>
+               4) If unsure, contact the organisation using a phone number or website you trust (not the link in the message).</p>
+          </details>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  
+ <!-- Question 17 -->  
+ 
+<div class="accordion-item">
+    <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
+      <div class="accordion-title">Before clicking a link or signing in, do you check the web address (URL) is genuine and use the official app/website?</div>
+      <div class="accordion-icon">▼</div>
+    </div>
+    <div class="accordion-content" aria-hidden="true">
+      <div class="accordion-body">
+        <fieldset>
+          <legend class="visually-hidden">Do you check links and use official apps/sites?</legend>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="q17" value="yes">
+              <span>Yes</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="q17" value="no" data-priority="4"
+                data-recommendation="<a href='https://stopthinkfraud.campaign.gov.uk/how-to-spot-fraud/how-to-spot-a-fake-website/' target='_blank' rel='noopener'>Type the address yourself or use the official app (eg., bank, HMRC, delivery). Don’t follow login links from emails or texts.">
+              <span>No</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="q17" value="unknown" data-priority="4">
+              <span>I don't know</span>
+            </label>
+          </div>
+
+          <div class="why-section">
+            <div class="why-title">Why this matters</div>
+            <div class="why-content">Fake login pages can look real but steal your password. Going directly to the official site/app avoids this trap.</div>
+          </div>
+
+          <!-- Help for non-technical users -->
+          <details class="check-details" role="group" aria-labelledby="check-summary-Q17">
+            <summary id="check-summary-Q17">How to check</summary>
+            <p>1) For important accounts, open the official app, or type the website (e.g., <code>www.yourbank.co.uk</code>) into your browser.<br>
+               2) Check the address bar: spelling, padlock, and the correct domain (e.g., <code>.co.uk</code> for UK sites).<br>
+               3) If a message says “verify” or “your parcel is waiting”, don’t click the link — go to the official site/app yourself.</p>
+          </details>
+        </fieldset>
+      </div>
+    </div>
+  </div> 
+  
+ <!-- Question 18 -->  
+  
+ <div class="accordion-item">
+    <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
+      <div class="accordion-title">Do you know how to report suspicious emails and texts (to help block scams for everyone)?</div>
+      <div class="accordion-icon">▼</div>
+    </div>
+    <div class="accordion-content" aria-hidden="true">
+      <div class="accordion-body">
+        <fieldset>
+          <legend class="visually-hidden">Do you know how to report suspicious messages?</legend>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="q18" value="yes">
+              <span>Yes</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="q18" value="no" data-priority="4"
+                data-recommendation="Forward suspicious emails to <a href='mailto:report@phishing.gov.uk'>report@phishing.gov.uk</a> and forward scam texts free to <a href='sms:7726'>7726</a>. See <a href='https://www.ofcom.org.uk/phones-and-broadband/scam-calls-and-messages/7726-reporting-scam-texts-and-calls' target='_blank' rel='noopener'>Ofcom’s 7726 guide</a> or report to <a href='https://www.actionfraud.police.uk/reportscam' target='_blank' rel='noopener'>Action Fraud</a> if you’ve suffered a loss.">
+              <span>No</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="q18" value="unknown" data-priority="4">
+              <span>I don't know</span>
+            </label>
+          </div>
+
+          <div class="why-section">
+            <div class="why-title">Why this matters</div>
+            <div class="why-content">Reporting helps providers and authorities block scams and take down fake sites, protecting others as well as you.</div>
+          </div>
+
+          <!-- Help for non-technical users -->
+          <details class="check-details" role="group" aria-labelledby="check-summary-Q18">
+            <summary id="check-summary-Q18">How to check</summary>
+            <p>1) For suspicious emails: forward to <code>report@phishing.gov.uk</code> (NCSC’s Suspicious Email Reporting Service).<br>
+               2) For scam texts/calls: forward the message to <strong>7726</strong> (free, works on all major UK networks).<br>
+               3) If you think you’ve been scammed, contact your bank and report to <a href='https://www.actionfraud.police.uk/reportscam' target='_blank' rel='noopener'>Action Fraud</a>.</p>
+          </details>
+        </fieldset>
+      </div>
+    </div>
+  </div> 
+  
+
+<!-- Question 19 -->
+<div class="accordion-item">
+  <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
+    <div class="accordion-title">Do you avoid sharing passwords/codes and limit personal details on social media that could be used to impersonate you?</div>
+    <div class="accordion-icon">▼</div>
+  </div>
+  <div class="accordion-content" aria-hidden="true">
+    <div class="accordion-body">
+      <fieldset>
+        <legend class="visually-hidden">Do you avoid sharing passwords/codes and limit personal details on social media?</legend>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="q19" value="yes">
+            <span>Yes</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q19" value="no" data-priority="5"
+              data-recommendation="<a href='https://www.ncsc.gov.uk/guidance/social-media-how-to-use-it-safely?ac=236344' target='_blank' rel='noopener'>Never share passwords, PINs or security codes, and review your social media privacy to limit personal info (e.g., birthday, address, holiday plans, pet names) that helps scammers.</a>">
+            <span>No</span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="q19" value="unknown" data-priority="5">
+            <span>I don't know</span>
+          </label>
+        </div>
+
+        <div class="why-section">
+          <div class="why-title">Why this matters</div>
+          <div class="why-content">
+            Criminals use social engineering to trick people into revealing passwords/codes, or they collect personal details from social media
+            (like birthdays, schools, pet names, holiday plans) to guess security answers, impersonate you, or craft convincing scams.
+          </div>
+        </div>
+
+        <!-- Help for non-technical users -->
+        <details class="check-details" role="group" aria-labelledby="check-summary-Q19">
+          <summary id="check-summary-Q19">How to check</summary>
+          <p>
+            1) Never share your password, full PIN, one-time passcodes, or recovery codes — no legitimate organisation will ask for them.<br>
+            2) Open each social app → <strong>Settings</strong> → <strong>Privacy</strong>. Set your profile/posts to <strong>Friends</strong> (not Public).<br>
+            3) Remove or hide sensitive details: full date of birth, home address, phone/email, school/work history, pet names, holiday dates, daily location tags.<br>
+            4) Review your “About”/profile sections and old public posts; delete anything that could help answer security questions or guess passwords.<br>
+            5) Be cautious with quizzes and “fun facts” posts that ask for first pet, mother’s maiden name, or favourite teacher — these are common security question themes.
+          </p>
+        </details>
+      </fieldset>
+    </div>
+  </div>
+</div>
+
+ 
+ <div class="button-row">
 		<button type="button" class="btn backBtn" onclick="checklist.prevPage()">Back</button>
 		<button type="button" class="btn nextBtn" onclick="checklist.showResults()">Complete Assessment</button>
 	</div>
@@ -1215,6 +950,7 @@
 	<p id="riskText"></p>
 	<div id="downloadSection"></div>
 </div>
+
 </main>
 <footer>
 	<div class="privacy-note">
