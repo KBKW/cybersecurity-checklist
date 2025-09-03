@@ -542,27 +542,28 @@
 	
 	
 <!-- Question 12 -->
-	<div class="accordion-item">
+	
+<div class="accordion-item">
   <div class="accordion-header" tabindex="0" role="button" aria-expanded="false">
-    <div class="accordion-title">Do you use network-level web protection (e.g., your broadband provider’s “Safe Browsing/Web Protect”) to block malicious sites?</div>
+    <div class="accordion-title">Is your Wi-Fi network protected with WPA2 or WPA3 encryption (not WEP or “open”)?</div>
     <div class="accordion-icon">▼</div>
   </div>
   <div class="accordion-content" aria-hidden="true">
     <div class="accordion-body">
       <fieldset>
-        <legend class="visually-hidden">Do you use network-level web protection to block malicious sites?</legend>
+        <legend class="visually-hidden">Is your Wi-Fi network protected with WPA2 or WPA3 encryption?</legend>
         <div class="radio-group">
           <label class="radio-option">
             <input type="radio" name="q12" value="yes">
             <span>Yes</span>
           </label>
           <label class="radio-option">
-            <input type="radio" name="q12" value="no" data-priority="3"
-              data-recommendation="Turn on your broadband provider’s Safe Browsing/Web Protect (or equivalent) to block known phishing and malware websites for all devices on your Wi-Fi.">
+            <input type="radio" name="q12" value="no" data-priority="4"
+              data-recommendation="<a href='https://www.ncsc.gov.uk/collection/home-networking' target='_blank' rel='noopener'>Switch your Wi-Fi security to WPA2 or WPA3 in your router settings. WEP and “open” networks are insecure and can be broken into within minutes.</a>">
             <span>No</span>
           </label>
           <label class="radio-option">
-            <input type="radio" name="q12" value="unknown" data-priority="3">
+            <input type="radio" name="q12" value="unknown" data-priority="4">
             <span>I don't know</span>
           </label>
         </div>
@@ -570,18 +571,19 @@
         <div class="why-section">
           <div class="why-title">Why this matters</div>
           <div class="why-content">
-            Network-level protection helps stop phishing and malware before pages even load, protecting every device on your Wi-Fi —
-            including smart TVs, tablets and guests.
+            WPA2 and WPA3 encryption protect your Wi-Fi traffic with strong security.  
+            Older settings like WEP or “open” Wi-Fi can be cracked quickly, allowing attackers to access your network and data.
           </div>
         </div>
 
         <!-- Help for non-technical users -->
-        <details class="check-details" role="group" aria-labelledby="check-summary-Q12">
-          <summary id="check-summary-Q12">How to check</summary>
+        <details class="check-details" role="group" aria-labelledby="check-summary-q12">
+          <summary id="check-summary-q12">How to check</summary>
           <p>
-            1) Log into your broadband account (or router app).<br>
-            2) Look for <strong>Security</strong>, <strong>Web Protect</strong>, <strong>Safe/Secure Browsing</strong>, or <strong>Parental/Content Controls</strong>.<br>
-            3) Turn it on (choose the standard/safe setting). It will protect all devices on your Wi-Fi automatically.
+            1) Log into your router app or web portal (often <code>192.168.0.1</code> or <code>192.168.1.1</code>).<br>
+            2) Go to <strong>Wireless Settings</strong> → <strong>Security</strong> or <strong>Wi-Fi Encryption</strong>.<br>
+            3) Make sure it’s set to <strong>WPA2</strong> or <strong>WPA3</strong> (not WEP or “open”).<br>
+            4) If you change it, you may need to reconnect devices using the Wi-Fi password.
           </p>
         </details>
       </fieldset>
@@ -961,6 +963,7 @@
 <script src="checklist.js"></script>
 </body>
 </html>
+
 
 
 
