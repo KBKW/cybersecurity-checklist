@@ -1,6 +1,6 @@
 const CyberChecklist = {
     currentPage: 0,
-    pages: ['page1', 'page2', 'page3', 'page4'],
+    pages: ['page1', 'page2', 'page3', 'page4', 'page5'],
 
     init() {
         this.showPage(this.currentPage);
@@ -18,12 +18,6 @@ const CyberChecklist = {
                     this.adjustAccordionHeight(accordionContent);
                 }
             });
-        });
-    },
-
-    adjustAccordionHeights() {
-        document.querySelectorAll('.accordion-content.active').forEach(content => {
-            this.adjustAccordionHeight(content);
         });
     },
 
@@ -225,89 +219,335 @@ const CyberChecklist = {
         content.style.maxHeight = fullHeight + 'px';
     });
 },
+	// Return the category for a given question name (q1, q2, ...)
+	questionCategory(name) {
+	  const n = parseInt(String(name).replace(/[^\d]/g, ''), 10);
+	  if (!Number.isFinite(n)) return 'General';
 
-    calculateScore() {
-        const form = document.getElementById('checklist');
-        const formData = new FormData(form);
-        let safeCount = 0; // counts "good" answers
-        let total = 0; // number of scored questions
+	  if (n >= 1 && n <= 4)   return 'Smart Home';
+	  if (n >= 5 && n <= 8)   return 'Password Hygiene';
+	  if (n >= 9 && n <= 12) return 'Home Network';
+	  if (n >= 13 && n <= 15) return 'Privacy & Data Awareness';
+	  if (n >= 16 && n <= 19) return 'Social Engineering & Phishing';
+	  return 'General';
+},
+	// Pull the visible question title text for a question group
+	questionTitle(name) {
+	  const item = document.querySelector(`input[name="${name}"]`)?.closest('.accordion-item');
+	  return item?.querySelector('.accordion-title')?.textContent?.trim() || name;
+	},
 
-        for (let [name, value] of formData.entries()) {
-            if (name.startsWith('q') && (value === 'yes' || value === 'no')) {
-                total++;
-                if (value === 'yes') safeCount++;
-            }
-        }
+	// Priority model: you can set data-priority on an input
+	// e.g. <input ... data-priority="4"> for high-severity items.
+	// Fallback to category weighting if not present.
+	questionPriority(name, selectedInputValue) {
+	  // Try specific priority from any input in the same group
+	  let pri = 0;
+	  document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
+		const p = parseFloat(inp.dataset.priority);
+		if (Number.isFinite(p) && p > pri) pri = p;
+	  });
 
-        return { safeCount, total };
-    },
+	  if (!pri) {
+		const cat = this.questionCategory(name);
+		const catWeights = {
+		  'Password Hygiene': 4,
+		  'Home Network': 4,
+		  'Privacy & Data Awareness': 3,
+		  'Smart Home': 3,
+		  'Social Engineering & Phishing': 4,
+		  'General': 2
+		};
+		pri = catWeights[cat] || 2;
+	  }
 
-    showResults() {
-        if (!this.validateCurrentPage()) {
-            return;
-        }
+	  // Slightly reduce weight for "unknown" vs "no"
+	  if (selectedInputValue === 'unknown') pri = pri * 0.9;
 
-        const { safeCount, total } = this.calculateScore();
-        const safePercentage = total > 0 ? (safeCount / total) * 100 : 0;
+	  return pri;
+	},
 
-        // Hide all pages and navigation
-        this.pages.forEach(id => document.getElementById(id).style.display = 'none');
-        document.querySelectorAll('.button-row').forEach(row => row.style.display = 'none');
+// Build a Blob download
+downloadFile(filename, mimeType, content) {
+  const blob = new Blob([content], { type: mimeType });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.style.display = 'none';
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  URL.revokeObjectURL(url);
+  a.remove();
+},
 
-        let riskClass, riskLevel, riskMessage;
+		calculateScore() {
+	  const form = document.getElementById('checklist');
+	  const formData = new FormData(form);
 
-        if (safePercentage >= 80) {
-            riskClass = 'low';
-            riskLevel = 'Low Risk';
-            riskMessage = 'Excellent! Your digital security setup appears to be very secure.';
-        } else if (safePercentage >= 60) {
-            riskClass = 'low-medium';
-            riskLevel = 'Low-Medium Risk';
-            riskMessage = 'Good security practices overall, but there are a few areas for improvement.';
-        } else if (safePercentage >= 40) {
-            riskClass = 'medium';
-            riskLevel = 'Medium Risk';
-            riskMessage = 'Several security gaps that should be addressed to reduce your risk.';
-        } else if (safePercentage >= 20) {
-            riskClass = 'medium-high';
-            riskLevel = 'Medium-High Risk';
-            riskMessage = 'Several security vulnerabilities that need attention.';
-        } else {
-            riskClass = 'high';
-            riskLevel = 'High Risk';
-            riskMessage = 'Your smart devices and digital accounts may be vulnerable. Consider reviewing your security settings urgently.';
-        }
+	  const overall = { safeCount: 0, total: 0 };
+	  const categories = {}; // { "Smart Home": {safe:0,total:0}, ... }
+	  const answers = [];    // full list of answers for export/top-fixes
 
-        // Collect recommendations
-        const recommendations = [];
-        document.querySelectorAll('input[type="radio"]:checked').forEach(input => {
-            if (input.value === 'no' && input.dataset.recommendation) {
-                recommendations.push(input.dataset.recommendation);
-            }
-        });
+	  for (let [name, value] of formData.entries()) {
+		if (!/^q\d+$/i.test(name)) continue;
+		if (!['yes', 'no', 'unknown'].includes(value)) continue;
 
-        // Display results
-        const resultBox = document.getElementById('resultBox');
-        resultBox.className = `result ${riskClass}`;
-        
-        const recommendationsHtml = recommendations.length 
-            ? `<h4>Recommendations for improvement:</h4><ul>${recommendations.map(r => `<li>${r}</li>`).join('')}</ul>`
-            : `<p>You're doing great! No immediate actions recommended.</p>`;
+		const cat = this.questionCategory(name);
+		if (!categories[cat]) categories[cat] = { safe: 0, total: 0 };
 
-        resultBox.innerHTML = `
-            <h3>${riskLevel}</h3>
-            <p>You scored ${safeCount} out of ${total} (${Math.round(safePercentage)}%)</p>
-            <p>${riskMessage}</p>
-            ${recommendationsHtml}
-            <button class="btn nextBtn" onclick="CyberChecklist.restartChecklist()">Start Over</button>
-        `;
-        
-        resultBox.style.display = 'block';
+		overall.total += 1;
+		categories[cat].total += 1;
 
-        // Update progress indicator
-        document.getElementById('pageIndicator').textContent = 'Assessment Complete';
-        document.getElementById('progressFill').style.width = '100%';
-    },
+		if (value === 'yes') {
+		  overall.safeCount += 1;
+		  categories[cat].safe += 1;
+		}
+
+		answers.push({
+		  name,
+		  category: cat,
+		  title: this.questionTitle(name),
+		  value
+		});
+	  }
+
+  return { overall, categories, answers };
+},
+
+
+		showResults() {
+	  if (!this.validateCurrentPage()) return;
+
+	  const { overall, categories, answers } = this.calculateScore();
+	  const safePct = overall.total > 0 ? (overall.safeCount / overall.total) * 100 : 0;
+
+	  // Hide all pages & per-page button rows (if any)
+	  this.pages.forEach(id => document.getElementById(id).style.display = 'none');
+	  document.querySelectorAll('.button-row').forEach(row => row.style.display = 'none');
+
+	  // Risk banding (unchanged)
+	  let riskClass, riskLevel, riskMessage;
+	  if (safePct >= 80) {
+		riskClass = 'low';
+		riskLevel = 'Low Risk';
+		riskMessage = 'Brilliant! You’ve put strong protections in place. Just keep up these habits and review things every now and then.';
+	  } else if (safePct >= 60) {
+		riskClass = 'low-medium';
+		riskLevel = 'Low-Medium Risk';
+		riskMessage = 'Good job — most of your setup is secure, but there are a few things you could tweak to be even safer.';
+	  } else if (safePct >= 40) {
+		riskClass = 'medium';
+		riskLevel = 'Medium Risk';
+		riskMessage = 'You’ve got some protections in place, but there are clear gaps. Fixing these will really strengthen your security.';
+	  } else if (safePct >= 20) {
+		riskClass = 'medium-high';
+		riskLevel = 'Medium-High Risk';
+		riskMessage = 'Your household is exposed in several areas. Tackling the recommended fixes will make a big difference.';
+	  } else {
+		riskClass = 'high';
+		riskLevel = 'High Risk';
+		riskMessage = 'Your setup is very vulnerable right now. It’s important to act quickly on the top fixes to protect your devices and accounts.';
+	  }
+
+	  // Collect recommendations (for NO and UNKNOWN), grouping by category and de-duping
+	  const recsByCategory = {};
+	  const seenRecs = new Set();
+
+	  // Also build a list of "unsafe" findings for Top 5 prioritisation
+	  const unsafeFindings = [];
+
+	  answers.forEach(a => {
+		if (!['no', 'unknown'].includes(a.value)) return;
+
+		// Get selected input
+		const selected = document.querySelector(`input[name="${a.name}"]:checked`);
+		let recHtml = selected?.dataset?.recommendation || '';
+
+		// If the chosen input has no recommendation, try the "no" input for that group
+		if (!recHtml) {
+		  const fallbackNo = document.querySelector(`input[name="${a.name}"][value="no"][data-recommendation]`);
+		  if (fallbackNo) recHtml = fallbackNo.dataset.recommendation;
+		}
+
+		// Generic fallback if still none
+		if (!recHtml) {
+		  recHtml = `Review: ${a.title}`;
+		}
+
+		// Group for recommendation display
+		if (!recsByCategory[a.category]) recsByCategory[a.category] = new Set();
+		if (!seenRecs.has(recHtml)) {
+		  recsByCategory[a.category].add(recHtml);
+		  seenRecs.add(recHtml);
+		}
+
+		// Compute priority for the Top 5
+		const pri = this.questionPriority(a.name, a.value);
+		unsafeFindings.push({
+		  name: a.name,
+		  title: a.title,
+		  category: a.category,
+		  value: a.value,
+		  priority: pri,
+		  recommendation: recHtml
+		});
+	  });
+
+	  // Sort unsafe by priority desc, then by category name (stable fallback)
+	  unsafeFindings.sort((a, b) => b.priority - a.priority || a.category.localeCompare(b.category));
+
+	  // Build the Top 5 fixes list 
+	  const topFive = [];
+	  const seenTitles = new Set();
+	  for (const f of unsafeFindings) {
+		if (seenTitles.has(f.title)) continue;
+		topFive.push(f);
+		seenTitles.add(f.title);
+		if (topFive.length === 5) break;
+	  }
+
+	  const topFiveHtml = topFive.length
+	  ? `<h4>Your Most Urgent Fixes</h4>
+		 <p>Start with these actions — the higher the priority, the more urgent the fix.</p>
+		 <ol class="top-five-list">
+		   ${topFive.map(f => {
+			   const urgentClass = f.priority === 5 ? ' class="urgent-fix"' : '';
+			 const icon = f.priority === 5 ? '⚠️ ' : '';
+			 return `<li${urgentClass}>${icon}<strong>${f.title}</strong> – ${f.recommendation}</li>`;
+		   }).join('')}
+		 </ol>`
+	: '';
+
+	  // Category breakdown table
+	  const catRows = Object.entries(categories).map(([cat, s]) => {
+		const pct = s.total ? Math.round((s.safe / s.total) * 100) : 0;
+		return `<tr><td>${cat}</td><td>${s.safe} / ${s.total}</td><td>${pct}%</td></tr>`;
+	  }).join('');
+
+	  const categoryTable = `
+		  <details class="cat-breakdown" role="group" aria-labelledby="cat-breakdown-summary">
+	  <summary id="cat-breakdown-summary">Category breakdown</summary>
+	  <p class="cat-explainer">
+		Each category shows how many of your answers were safe practices (“Yes”) compared to the total questions. 
+		The percentage helps you see where you’re strongest and where you could improve.
+	  </p>
+  <table class="results-table">
+		  <thead><tr><th>Category</th><th>Score</th><th>Percent</th></tr></thead>
+		  <tbody>${catRows}</tbody>
+		</table>
+	  </details>
+	`;
+	
+
+		  // After `topFive`, add this:
+	const topRecSet = new Set(topFive.map(f => String(f.recommendation)));
+
+	// Build grouped recommendations EXCLUDING anything already in Top 5, and dedupe globally
+	let furtherCount = 0;
+	const seenGlobal = new Set(topRecSet); // start by blocking the Top 5 recs
+	const groupedRecs = Object.keys(recsByCategory).length
+	  ? Object.entries(recsByCategory).map(([cat, set]) => {
+		  const items = [];
+		  Array.from(set).forEach(html => {
+			if (!seenGlobal.has(html)) {
+			  items.push(`<li>${html}</li>`);
+			  seenGlobal.add(html);
+			  furtherCount++;
+			}
+		  });
+		  return items.length ? `<h5>${cat}</h5><ul>${items.join('')}</ul>` : '';
+		}).join('')
+	  : '';
+
+	// Wrap “Further recommendations” in a collapsible details element
+	const recommendationsHtml = furtherCount
+	  ? `
+		<details class="more-recs" role="group" aria-labelledby="more-recs-summary">
+		  <summary id="more-recs-summary">Other things you could improve (${furtherCount})</summary>
+		  <p class="more-recs-intro">These are extra steps you might want to look at after fixing the top 5.</p>
+		  ${groupedRecs}
+		</details>
+	  `
+	  : `<p><strong>You're doing great! No other immediate actions required at this time.</strong></p>`;
+
+
+	  // Render results UI
+	  const resultBox = document.getElementById('resultBox');
+	  resultBox.className = `result ${riskClass}`;
+	  resultBox.innerHTML = `
+		<h3>${riskLevel}</h3>
+		<p>You scored ${overall.safeCount} out of ${overall.total} (${Math.round(safePct)}%)</p>
+		<p>${riskMessage}</p>
+		${categoryTable}
+		${topFiveHtml}
+		${recommendationsHtml}
+		<div class="result-actions" style="display:flex; gap:.5rem; margin-top:1rem; flex-wrap:wrap;">
+		  <button class="btn nextBtn" onclick="CyberChecklist.downloadResultsJSON()">Download JSON</button>
+		  <button class="btn nextBtn" onclick="CyberChecklist.downloadResultsCSV()">Download CSV</button>
+		  <button class="btn nextBtn" onclick="CyberChecklist.restartChecklist()">Start Over</button>
+		</div>
+	  `;
+	  resultBox.style.display = 'block';
+
+	  // Progress indicator
+	  document.getElementById('pageIndicator').textContent = 'Assessment Complete';
+	  document.getElementById('progressFill').style.width = '100%';
+
+	  // Persist the last results in memory for export
+	  this._lastResults = { overall, categories, answers, unsafeFindings, topFive };
+	},
+	
+		downloadResultsJSON() {
+	  const payload = this._lastResults || {};
+	  const wrap = {
+		exportedAt: new Date().toISOString(),
+		pages: this.pages,
+		results: payload
+	  };
+	  this.downloadFile('cyberchecklist-results.json', 'application/json;charset=utf-8', JSON.stringify(wrap, null, 2));
+	},
+
+	downloadResultsCSV() {
+	  const r = this._lastResults || {};
+	  const { overall = {}, categories = {}, answers = [], topFive = [] } = r;
+
+	  // 1) Overall line
+	  const lines = [];
+	  lines.push(['Section', 'Key', 'Value'].join(','));
+	  lines.push(['Overall', 'Safe', overall.safeCount ?? ''].join(','));
+	  lines.push(['Overall', 'Total', overall.total ?? ''].join(','));
+	  const pct = (overall.total ? Math.round((overall.safeCount / overall.total) * 100) : 0);
+	  lines.push(['Overall', 'Percent', pct].join(','));
+
+	  // 2) Category breakdown
+	  lines.push('');
+	  lines.push(['Category', 'Safe', 'Total', 'Percent'].join(','));
+	  Object.entries(categories).forEach(([cat, s]) => {
+		const cpct = s.total ? Math.round((s.safe / s.total) * 100) : 0;
+		lines.push([cat, s.safe, s.total, cpct].join(','));
+	  });
+
+	  // 3) Answers
+	  lines.push('');
+	  lines.push(['Answers'].join(','));
+	  lines.push(['Question', 'Category', 'Answer'].join(','));
+	  answers.forEach(a => {
+		lines.push([`"${a.title.replace(/"/g, '""')}"`, a.category, a.value].join(','));
+	  });
+
+	  // 4) Top 5 fixes
+	  lines.push('');
+	  lines.push(['Top 5 Fixes (priority-desc)'].join(','));
+	  lines.push(['Title', 'Category', 'Priority', 'Recommendation'].join(','));
+	  topFive.forEach(f => {
+		const title = `"${f.title.replace(/"/g, '""')}"`;
+		const rec   = `"${String(f.recommendation).replace(/"/g, '""')}"`;
+		lines.push([title, f.category, f.priority, rec].join(','));
+	  });
+
+	  this.downloadFile('cyberchecklist-results.csv', 'text/csv;charset=utf-8', lines.join('\n'));
+	},
 
     restartChecklist() {
     // Reset form
