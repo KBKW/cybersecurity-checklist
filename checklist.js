@@ -322,11 +322,11 @@ downloadFile(filename, mimeType, content) {
 	  const { overall, categories, answers } = this.calculateScore();
 	  const safePct = overall.total > 0 ? (overall.safeCount / overall.total) * 100 : 0;
 
-	  // Hide all pages & per-page button rows (if any)
+	  // Hide all pages & per-page button rows 
 	  this.pages.forEach(id => document.getElementById(id).style.display = 'none');
 	  document.querySelectorAll('.button-row').forEach(row => row.style.display = 'none');
 
-	  // Risk banding (unchanged)
+	  // Risk banding 
 	  let riskClass, riskLevel, riskMessage;
 	  if (safePct >= 80) {
 		riskClass = 'low';
@@ -600,5 +600,6 @@ window.checklist = CyberChecklist;
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => CyberChecklist.init());
+
 
 
