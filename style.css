@@ -94,7 +94,7 @@
 	  user-select: none;
 	}
 	.accordion-header:hover { background: #e9ecef; }
-	.accordion-header.active { background: #3498db; color: #fff; }
+	.accordion-header.active { background: #0056b3; color: #fff; }
 
 	.accordion-title {
 	  font-size: 1.1em;
@@ -215,7 +215,7 @@
 	  padding: 1rem; margin-top: 1rem; font-size: 0.95rem; color: #333;
 	}
 	.check-details summary {
-	  font-weight: bold; color: #007bff; cursor: pointer; list-style: none; position: relative;
+	  font-weight: 700; color: #0a58ca; cursor: pointer; list-style: none; position: relative;
 	}
 	.check-details summary:focus { outline: 3px solid #80bdff; outline-offset: 2px; background-color: #e8f4ff; }
 	.check-details summary:hover { background-color: #eef7ff; }
@@ -225,6 +225,15 @@
 	  transform: rotate(0deg); transition: transform 0.3s ease;
 	}
 	.check-details[open] summary::after { transform: rotate(180deg); }
+	
+	.check-details .steps {
+	  margin: 0.5rem 0 0 1.25rem; /* top/left spacing for markers */
+	  padding: 0;
+	}
+	.check-details .steps li + li {
+	  margin-top: 0.35rem; /* a little vertical breathing room */
+	}
+
 
 	/* collapsible result sections */
 	.more-recs, .cat-breakdown { margin-top: 0.75rem; }
